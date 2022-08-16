@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "__tests__/**/*.ts",
+    "__mocks__/**/*.ts",
+    "src/**/*.test.ts",
+    "config.ts",
+    "jest.config.cjs",
+    "setupTestFrameworkScriptFile.ts"
+  ],
+  "compilerOptions": {
+    "plugins": [{ "cacheBetweenTests": false }]
+  }
+}

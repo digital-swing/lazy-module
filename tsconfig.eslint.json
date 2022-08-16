@@ -1,0 +1,5 @@
+{
+    "include": [
+        ".eslintrc.cjs","babel.config.cjs"
+    ]
+}
