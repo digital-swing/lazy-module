@@ -1,0 +1,8 @@
+node_modules
+dist
+public
+build
+*.code-workspace
+.history
+yarn-error.log
+coverage
