@@ -1,0 +1,37 @@
+{
+  // "typescript.validate.enable": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": [
+    "source.fixAll.format",
+    "source.fixAll.eslint",
+    "source.fixAll.stylelint"
+  ],
+  "eslint.format.enable": false,
+  "eslint.validate": [
+    "vue",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.options": { "overrideConfigFile": ".eslintrc.cjs" },
+  "auto-close-tag.SublimeText3Mode": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+  },
+  "editor.formatOnType": true,
+  "stylelint.enable": true,
+  "css.validate": false,
+  "scss.validate": false,
+  "jest.jestCommandLine": "node_modules/.bin/jest",
+  "jest.autoRun": {
+    "watch": false,
+    "onSave": "test-file",
+    "onStartup": ["all-tests"]
+  },
+  "jest.showCoverageOnLoad": true,
+  "jest.coverageFormatter": "GutterFormatter",
+  "stylelint.packageManager": "yarn"
+}

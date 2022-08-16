@@ -1,0 +1,61 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-property-sort-order-smacss"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "declaration-colon-newline-after": null,
+    "value-list-comma-newline-after": null,
+    "no-empty-source": null,
+    "no-descending-specificity": null,
+    "at-rule-empty-line-before": null,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "extend",
+          "at-root",
+          "debug",
+          "warn",
+          "error",
+          "if",
+          "else",
+          "for",
+          "each",
+          "while",
+          "mixin",
+          "include",
+          "content",
+          "return",
+          "tailwind",
+          "apply",
+          "responsive",
+          "variants",
+          "screen",
+          "function"
+        ]
+      }
+    ],
+    "selector-class-pattern": [
+      "^[a-z]+(-[a-z]+)*",
+      {
+        "message": "Selector should use lowercase and separate words with hyphens (selector-class-pattern)"
+      }
+    ],
+    "selector-id-pattern": [
+      "^[a-z]+(-[a-z]+)*",
+      {
+        "message": "Selector should use lowercase and separate words with hyphens (selector-id-pattern)"
+      }
+    ]
+  },
+  "ignoreFiles": [
+    "node_modules/**/*",
+    "vendor/**/*",
+    ".vscode/**/*",
+    ".yarn/**/*"
+  ]
+}
