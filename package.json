@@ -41,7 +41,7 @@
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@open-wc/building-rollup": "^2.0.1",
-    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-commonjs": "22.0.2",
     "@rollup/plugin-node-resolve": "^13.1.2",
     "@types/jest": "^27.0.3",
     "@types/jest-image-snapshot": "^4.3.1",
