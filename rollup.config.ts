@@ -31,7 +31,7 @@ export default [
     input: 'src/index.ts',
     plugins: [dts()],
     output: {
-      file: `types/index.d.ts`,
+      file: `dist/types/index.d.ts`,
       format: 'es',
     },
   },
