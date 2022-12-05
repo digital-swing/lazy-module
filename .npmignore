@@ -22,3 +22,5 @@ setupTestFrameworkScriptFile.ts
 src
 tsconfig.*
 yarn.lock
+.release-please-manifest.json
+release-please-config.json

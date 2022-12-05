@@ -1,0 +1,52 @@
+{
+	"plugins": [
+		"sentence-case"
+	],
+	"packages": {
+		".": {
+			"release-type": "node",
+			"bump-minor-pre-major": false,
+			"bump-patch-for-minor-pre-major": false,
+			"draft": false,
+			"prerelease": false,
+			"labels": [
+				"autorelease: pending",
+				"automerge"
+			],
+			"changelog-sections": [
+				{
+					"type": "feat",
+					"section": "Features"
+				},
+				{
+					"type": "fix",
+					"section": "Fixes & updates"
+				},
+				{
+					"type": "perf",
+					"section": "Optimizations"
+				},
+				{
+					"type": "docs",
+					"section": "Documentation"
+				},
+				{
+					"type": "style",
+					"hidden": true
+				},
+				{
+					"type": "chore",
+					"hidden": true
+				},
+				{
+					"type": "refactor",
+					"hidden": true
+				},
+				{
+					"type": "test",
+					"hidden": true
+				}
+			]
+		}
+	}
+}
