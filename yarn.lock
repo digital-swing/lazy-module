@@ -1775,12 +1775,12 @@
     jest-matcher-utils "^27.0.0"
     pretty-format "^27.0.0"
 
-"@types/jsdom-screenshot@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@types/jsdom-screenshot/-/jsdom-screenshot-3.2.1.tgz#9d726d74fb00aedd65a2b649b75e8ff74ad54bd9"
-  integrity sha512-GwIVKLU2QVpUqWVzALAVBPHU8lM/LL95JAXm/N71/QGJ/5uLdqBtkh4YhzCTdmCSGvQGpqLDfvoK54LMKVZCqA==
+"@types/jsdom-screenshot@3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@types/jsdom-screenshot/-/jsdom-screenshot-3.2.2.tgz#4a2386761eddc2192865bba3a70ec6c0a5d9a22a"
+  integrity sha512-UUjbnvOMOrxKfE3sVwiY+bo/BqxhteXpmJCy0F8Nb80d/gzbPSlA583X3Zf2DINXdBQ+RVOutnhrIKr3Kl5u5A==
   dependencies:
-    "@types/puppeteer" "*"
+    "@types/puppeteer" "^5.0.0"
 
 "@types/json-schema@*", "@types/json-schema@^7.0.4", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   version "7.0.11"
@@ -1841,10 +1841,10 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.7.0.tgz#ea03e9f0376a4446f44797ca19d9c46c36e352dc"
   integrity sha512-RI1L7N4JnW5gQw2spvL7Sllfuf1SaHdrZpCHiBlCXjIlufi1SMNnbu2teze3/QE67Fg2tBlH7W+mi4hVNk4p0A==
 
-"@types/puppeteer@*":
-  version "5.4.6"
-  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-5.4.6.tgz#afc438e41dcbc27ca1ba0235ea464a372db2b21c"
-  integrity sha512-98Kghehs7+/GD9b56qryhqdqVCXUTbetTv3PlvDnmFRTHQH0j9DIp1f7rkAW3BAj4U3yoeSEQnKgdW8bDq0Y0Q==
+"@types/puppeteer@^5.0.0":
+  version "5.4.7"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-5.4.7.tgz#b8804737c62c6e236de0c03fa74f91c174bf96b6"
+  integrity sha512-JdGWZZYL0vKapXF4oQTC5hLVNfOgdPrqeZ1BiQnGk5cB7HeE91EWUiTdVSdQPobRN8rIcdffjiOgCYJ/S8QrnQ==
   dependencies:
     "@types/node" "*"
 
