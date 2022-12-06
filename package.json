@@ -1,5 +1,5 @@
 {
-  "name": "lazy-module",
+  "name": "@digital-swing/lazy-module",
   "version": "0.0.1",
   "description": "Asynchroneously load modules when they are required",
   "type": "module",
