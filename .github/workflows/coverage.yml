@@ -1,0 +1,86 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build Status
+
+on:
+  push:
+    branches:
+      - main
+      - '!renovate/**'
+    paths:
+      - 'src/**'
+  pull_request:
+    branches:
+      - main
+      - '!renovate/**'
+
+jobs:
+  coverage:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm cov
+
+      # Only run the coverage once
+      - if: ${{ matrix.node-version == '16.x' }}
+        name: Get Coverage for badge
+        run: |
+          SUMMARY="$(npm run cov --coverageReporters='text-summary' | tail -3 | head -1)"
+          TOKENS=($SUMMARY)
+          COVERAGE=${TOKENS[2]%"%"}
+          [[ ${COVERAGE} = 'Unknown' ]] && COVERAGE_VAL=0 || COVERAGE_VAL=${COVERAGE}
+          echo "COVERAGE_VAL=${COVERAGE_VAL}" >> $GITHUB_ENV
+          echo "COVERAGE=${COVERAGE}" >> $GITHUB_ENV
+          REF=${{ github.ref }}
+          echo "github.ref: $REF"
+          IFS='/' read -ra PATHS <<< "$REF"
+          BRANCH_NAME="${PATHS[1]}_${PATHS[2]}"
+          echo $BRANCH_NAME
+          echo "BRANCH=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
+      - if: ${{ matrix.node-version == '16.x' }}
+        name: Create the Badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.BADGES_GIST_TOKEN }}
+          gistID: 47afa2dca4215d90df6248220a886a3e
+          filename: ${{ github.event.repository.name }}__${{ env.BRANCH }}.json
+          label: Test Coverage
+          message: ${{ env.COVERAGE }}%
+          namedLogo: jest
+          valColorRange: ${{ env.COVERAGE_VAL }}
+          minColorRange: 50
+          maxColorRange: 90

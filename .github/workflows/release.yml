@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-name: Update release PR & create release if the release PR has been merged
+name: Update release PR / Create release
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -10,4 +10,44 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          command: manifest
+          bump-minor-pre-major: true
+          release-type: "node"
+          plugins: "sentence-case"
+          changelog-types: '[{"type": "feat","section": "Fonctionnalités"},{"type": "fix","section": "Correctifs et mises à jour"},{"type": "perf","section": "Optimisations"},{"type": "docs","section": "Documentation"},{"type": "style","hidden": true},{"type": "chore","hidden": true},{"type": "refactor","hidden": true},{"type": "test","hidden": true}]'
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.release_created }}
+
+      - uses: pnpm/action-setup@v2
+        if: ${{ steps.release.outputs.release_created }}
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        if: ${{ steps.release.outputs.release_created }}
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - uses: actions/setup-node@v3
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+      - run: pnpm build
+        if: ${{ steps.release.outputs.release_created }}
+      - run: pnpm publish
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}

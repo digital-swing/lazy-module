@@ -6,3 +6,4 @@ build
 .history
 yarn-error.log
 coverage
+.npmrc
