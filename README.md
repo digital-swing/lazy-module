@@ -1,6 +1,6 @@
 # lazy-module
 
-Asynchroneously load modules when they are required, thus reducing initial page load time.
+Asynchronously load modules when they are required, thus reducing initial page load time.
 
 This package is useful if your app is loading heavy modules that you want to load only at the specific time they are required.
 
