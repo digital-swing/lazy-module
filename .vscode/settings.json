@@ -1,11 +1,4 @@
 {
-  // "typescript.validate.enable": false,
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": [
-    "source.fixAll.format",
-    "source.fixAll.eslint",
-    "source.fixAll.stylelint"
-  ],
   "eslint.format.enable": false,
   "eslint.validate": [
     "vue",
@@ -33,5 +26,5 @@
   },
   "jest.showCoverageOnLoad": true,
   "jest.coverageFormatter": "GutterFormatter",
-  "stylelint.packageManager": "yarn"
+  "stylelint.packageManager": "pnpm"
 }
