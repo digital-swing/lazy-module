@@ -8,6 +8,7 @@
     "jest.config.cjs",
     "setupTestFrameworkScriptFile.ts"
   ],
+  "exclude": [],
   "compilerOptions": {
     "plugins": [{ "cacheBetweenTests": false }]
   }

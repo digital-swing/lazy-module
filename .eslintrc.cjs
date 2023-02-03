@@ -2,117 +2,101 @@ const tsConfig = require('./tsconfig.json');
 const tsTestConfig = require('./tsconfig.test.json');
 
 module.exports = {
-  root: true,
-  parser: '@babel/eslint-parser',
-  parserOptions: {
-    babelOptions: {
-      configFile: './.babelrc.cjs',
-    },
-    ecmaFeatures: {
-      globalReturn: true,
-      generators: false,
-      objectLiteralDuplicateProperties: false,
-    },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    extraFileExtensions: ['.cjs'],
-  },
-  plugins: ['import', 'prettier'],
-  extends: ['eslint:recommended', 'prettier'],
   env: {
-    node: true,
-    es6: true,
     amd: true,
     browser: true,
-    jquery: true,
+    es6: true,
+    node: true,
   },
-  overrides: [
-    {
-      parser: '@typescript-eslint/parser',
-      files: tsConfig.include, // Your TypeScript files extension
-      parserOptions: {
-        project: ['./tsconfig.json'], // Specify it only for TypeScript files
-      },
-      extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:prettier/recommended',
-      ],
-    },
-
-    {
-      parser: '@typescript-eslint/parser',
-      files: tsTestConfig.include, // Your TypeScript files extension
-      parserOptions: {
-        project: ['./tsconfig.test.json'], // Specify it only for TypeScript files
-      },
-      env: {
-        jest: true,
-        'jest/globals': true,
-      },
-      plugins: ['jest'],
-      extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:prettier/recommended',
-      ],
-    },
-  ],
-  settings: {
-    'import/core-modules': [],
-    'import/order': [
-      'error',
-      {
-        groups: [
-          'index',
-          'sibling',
-          'parent',
-          'internal',
-          'external',
-          'builtin',
-          'object',
-          'type',
-        ],
-      },
-    ],
-    'import/ignore': [
-      'node_modules',
-      '\\.(coffee|scss|css|less|hbs|svg|json)$',
-    ],
-  },
+  extends: ['eslint:recommended'],
   ignorePatterns: [
     '**/node_modules/*.[tj]s',
     '**/vendor/*.[tj]s',
     '**/dist/**/*.[tj]s',
     '**/public/**/*.[tj]s',
     '**/build/**/*.[tj]s',
-  ].concat(tsConfig.exclude),
+  ],
+  overrides: [
+    {
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+      files: tsConfig.include,
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: ['./tsconfig.json'], // Specify it only for TypeScript files
+      },
+      plugins: ['@typescript-eslint/eslint-plugin', 'eslint-plugin-tsdoc'],
+    },
+    {
+      env: {
+        jest: true,
+        'jest/globals': true,
+      },
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+      files: tsTestConfig.include,
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: ['./tsconfig.test.json'], // Specify it only for TypeScript files
+      },
+      plugins: [
+        '@typescript-eslint/eslint-plugin',
+        'eslint-plugin-tsdoc',
+        'jest',
+      ],
+    },
+    {
+      files: ['src/plugins/**'],
+      rules: {
+        'no-param-reassign': [
+          'error',
+          { ignorePropertyModificationsFor: ['ctx'], props: true },
+        ],
+      },
+    },
+    {
+      files: ['src/triggers/*.ts', 'src/effects/*.ts'],
+      rules: {
+        'sort-keys-fix/sort-keys-fix': 'off',
+      },
+    },
+  ],
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    babelOptions: {
+      configFile: './babel.config.cjs',
+    },
+    ecmaFeatures: {
+      generators: false,
+      globalReturn: true,
+      objectLiteralDuplicateProperties: false,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: ['import', 'sort-keys-fix', 'typescript-sort-keys'],
+  root: true,
   rules: {
-    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-console': 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-underscore-dangle': 0,
-    // 'no-undef': 'warn',
-    'func-names': 0,
     'comma-dangle': [
       'error',
       {
         arrays: 'always-multiline',
-        objects: 'always-multiline',
-        imports: 'always-multiline',
         exports: 'always-multiline',
         functions: 'ignore',
+        imports: 'always-multiline',
+        objects: 'always-multiline',
       },
     ],
-    'no-param-reassign': [
-      'error',
-      {
-        props: true,
-        ignorePropertyModificationsFor: ['state'],
-      },
-    ],
+
+    // 'no-undef': 'warn',
+    'func-names': 0,
+
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -128,15 +112,54 @@ module.exports = {
         ],
       },
     ],
+    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': 'off',
 
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+    'no-param-reassign': [
+      'error',
+      {
+        ignorePropertyModificationsFor: ['state'],
+        props: true,
+      },
+    ],
+    'no-underscore-dangle': 0,
     'sort-imports': [
       'warn',
       {
+        allowSeparatedGroups: false,
         ignoreCase: false,
         ignoreDeclarationSort: false,
         ignoreMemberSort: false,
         memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-        allowSeparatedGroups: false,
+      },
+    ],
+    'sort-keys-fix/sort-keys-fix': 'warn',
+
+    'tsdoc/syntax': 'warn',
+    'typescript-sort-keys/interface': 'warn',
+    'typescript-sort-keys/string-enum': 'warn',
+  },
+  settings: {
+    'import/core-modules': [],
+    'import/ignore': [
+      'node_modules',
+      '\\.(coffee|scss|css|less|hbs|svg|json)$',
+    ],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'index',
+          'sibling',
+          'parent',
+          'internal',
+          'external',
+          'builtin',
+          'object',
+          'type',
+        ],
       },
     ],
   },
