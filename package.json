@@ -15,7 +15,7 @@
   "sideEffects": false,
   "homepage": "https://github.com/digital-swing/lazy-module",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": "https://github.com/digital-swing/lazy-module.git",
   "author": "Lucas Demea <lucas@digital-swing.com>",
