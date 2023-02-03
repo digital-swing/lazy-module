@@ -3,39 +3,35 @@ import 'requestidlecallback-polyfill';
 
 type LazyModuleConfig = {
   /**
-   * Element to watch
-   */
-  trigger: string;
-  /**
-   * Module to load
-   *
-   * @return  {<unknown>}The module that has been loaded. It can be anything: a class, a constant...
-   */
-  loader: () => Promise<unknown>;
-  /**
    * What should be executed after the module has been imported.
    *
-   * @param   {unknown}      module   The imported module
-   * @param   {HTMLElement}  element  The element that triggered the module import
+   * @param    module - The imported module
+   * @param    element - The element that triggered the module import
    *
-   * @return  {<module>}              [return description]
+   * @returns  [return description]
    */
-  callback: (module: unknown, element?: HTMLElement) => unknown;
+  callback?: (module: unknown, element?: HTMLElement) => Promise<void>;
+  /**
+   * LazyModules dependencies, in case one or many other modules must be loaded first.
+   */
+  dependsOn?: LazyModule | LazyModule[];
 
   /**
    * Should the module be loaded when the trigger enters the viewport, or deferred to when the browser is idle.
    */
-  lazy: boolean;
+  lazy?: boolean;
 
   /**
-   * LazyModules dependencies, in case one or many other modules must be loaded first.
+   * Function that loads the module, or the es module resolve path.
+   *
+   * @returns  The module that has been loaded. It can be anything: a class, a constant...
    */
-  dependsOn: LazyModule | LazyModule[];
+  loader: string | (() => Promise<unknown>);
 
   /**
    * Intersection Observer options
    */
-  observerOptions: {
+  observerOptions?: {
     /**
      * The element used as viewport
      */
@@ -51,39 +47,73 @@ type LazyModuleConfig = {
      */
     thresholds: Array<number>;
   };
+
+  /**
+   * What triggers the module loading.
+   */
+  on?: 'scroll' | 'click' | 'hover';
+
+  /**
+   * Element to watch
+   */
+  trigger?: string | NodeListOf<HTMLElement>;
 };
 
 export class LazyModule {
-  trigger = 'root';
-  loader: () => Promise<unknown> = () => Promise.resolve();
-  callback: (module: unknown, element?: Element) => unknown = () => {};
+  trigger: NodeListOf<HTMLElement> =
+    document.querySelectorAll<HTMLElement>('root');
+  loader!: () => Promise<void>;
+  callback: (module: unknown, element?: HTMLElement) => Promise<void> =
+    async () => Promise.resolve();
   lazy = true;
+  on = 'scroll';
   dependsOn: LazyModule[] = [];
   observerOptions = {
     root: document,
     rootMargin: '0px 0px 0px 0px',
     thresholds: 0.0,
   };
-  #targets: NodeListOf<Element>;
-  constructor(config: Partial<LazyModuleConfig>) {
+  constructor(config: LazyModuleConfig) {
     Object.assign(this, config);
-    this.#targets = document.querySelectorAll(this.trigger);
+    this.trigger =
+      typeof this.trigger === 'string'
+        ? document.querySelectorAll(this.trigger)
+        : this.trigger;
+    this.loader =
+      typeof config.loader === 'string'
+        ? () => {
+            return import(config.loader as string);
+          }
+        : this.loader;
   }
-
   init = () => {
     //if component found on page
-    if (this.#targets) {
-      if ('requestIdleCallback' in window && !this.lazy) {
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        window.requestIdleCallback(this._loadModule);
-      } else {
-        const observer = new IntersectionObserver(
-          this._handleIntersect,
-          this.observerOptions
-        );
-        this.#targets.forEach((el) => {
-          observer.observe(el);
-        });
+    if (this.trigger) {
+      switch (this.on) {
+        case 'scroll':
+          if ('requestIdleCallback' in window && !this.lazy) {
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            window.requestIdleCallback(this._loadModule);
+          } else {
+            const observer = new IntersectionObserver(
+              this._handleIntersect,
+              this.observerOptions
+            );
+            this.trigger.forEach((el: HTMLElement) => {
+              observer.observe(el);
+            });
+          }
+          break;
+        case 'click':
+          this.trigger.forEach((el: HTMLElement) => {
+            el.addEventListener('click', this._handleClick, { once: true });
+          });
+          break;
+        case 'hover':
+          this.trigger.forEach((el: HTMLElement) => {
+            el.addEventListener('mouseenter', this._loadModule);
+          });
+          break;
       }
     }
   };
@@ -94,12 +124,17 @@ export class LazyModule {
       ([] as LazyModule[])
         .concat(this.dependsOn)
         .map((module) => module._loadModule())
-    ).then(() => {
-      this.loader()
-        .then((module) => {
-          this.#targets.forEach((element) => {
-            this.callback(module, element);
-          });
+    ).then(async () => {
+      await this.loader()
+        .then(async (module) => {
+          await Promise.all(
+            Array.prototype.map.call(
+              this.trigger,
+              async (trig: HTMLElement) => {
+                await this.callback(module, trig);
+              }
+            )
+          );
         })
         .catch((error: Error) => {
           console.error(error.message);
@@ -115,6 +150,12 @@ export class LazyModule {
       if (el.isIntersecting) {
         this._loadModule().finally(() => observer.disconnect());
       }
+    });
+  };
+
+  _handleClick = async (e: MouseEvent) => {
+    await this._loadModule().then(() => {
+      e.target?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
   };
 }
