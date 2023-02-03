@@ -3,9 +3,16 @@
   "version": "0.0.1",
   "description": "Asynchroneously load modules when they are required",
   "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./types/index.d.ts",
+  "main": "./dist/index.cjs",
+  "exports": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "browser": "./dist/bundle.min.js",
+  "unpkg": "./dist/bundle.min.js",
+  "files": [
+    "/dist",
+    "/types"
+  ],
+  "sideEffects": false,
   "homepage": "https://github.com/digital-swing/lazy-module",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -17,20 +24,17 @@
     "node": ">=v14.18.0"
   },
   "scripts": {
-    "rollup": "rimraf ./dist && rollup -c rollup.config.ts",
-    "rollup:dev": "rollup -c rollup.config.ts -w",
-    "build:tsc": "rimraf ./dist && tsc --declaration",
-    "start": "webpack --watch --config webpack.dev.cjs",
-    "build": "webpack --progress --config webpack.dev.cjs --stats",
-    "build:production": "webpack --progress --config webpack.prod.cjs --stats",
+    "build": "rimraf ./dist && rollup -c rollup.config.ts --configPlugin typescript",
+    "dev": "rollup -c rollup.config.ts --configPlugin typescript -w",
     "test": "jest",
+    "cov": "jest --coverage",
     "lint": "npm run lint:js && npm run lint:css",
+    "docs:html": "typedoc --plugin none --readme none --out docs/types src/index.ts",
+    "docs:md": "typedoc --plugin typedoc-plugin-markdown --readme none --out docs/types src/index.ts",
+    "docs:dev": "vuepress dev docs",
+    "docs:vue": "vuepress build docs",
     "lint:js": "eslint resources/scripts",
     "lint:css": "stylelint \"resources/**/*.{css,scss,vue}\"",
-    "release": "standard-version -t \"\"",
-    "release:minor": "standard-version -t \"\" --release-as minor",
-    "release:patch": "standard-version -t \"\" --release-as patch",
-    "release:major": "standard-version -t \"\" --release-as major",
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
