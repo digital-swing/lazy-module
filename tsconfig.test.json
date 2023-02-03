@@ -5,8 +5,7 @@
     "__mocks__/**/*.ts",
     "src/**/*.test.ts",
     "config.ts",
-    "jest.config.cjs",
-    "setupTestFrameworkScriptFile.ts"
+    "jest.config.ts"
   ],
   "exclude": [],
   "compilerOptions": {

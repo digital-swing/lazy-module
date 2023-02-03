@@ -1,6 +1,6 @@
 {
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/__mocks__/**/*.ts", "fxmachine.js"],
+  "include": ["src/**/*.ts", "rollup.config.ts"],
+  "exclude": ["src/**/__mocks__/**/*.ts"],
 
   "compilerOptions": {
     "target": "es6",

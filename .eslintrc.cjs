@@ -8,79 +8,31 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['eslint:recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+  ],
   ignorePatterns: [
     '**/node_modules/*.[tj]s',
     '**/vendor/*.[tj]s',
     '**/dist/**/*.[tj]s',
     '**/public/**/*.[tj]s',
     '**/build/**/*.[tj]s',
+    '**/coverage',
   ],
-  overrides: [
-    {
-      extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      ],
-      files: tsConfig.include,
-      parser: '@typescript-eslint/parser',
-      parserOptions: {
-        project: ['./tsconfig.json'], // Specify it only for TypeScript files
-      },
-      plugins: ['@typescript-eslint/eslint-plugin', 'eslint-plugin-tsdoc'],
-    },
-    {
-      env: {
-        jest: true,
-        'jest/globals': true,
-      },
-      extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      ],
-      files: tsTestConfig.include,
-      parser: '@typescript-eslint/parser',
-      parserOptions: {
-        project: ['./tsconfig.test.json'], // Specify it only for TypeScript files
-      },
-      plugins: [
-        '@typescript-eslint/eslint-plugin',
-        'eslint-plugin-tsdoc',
-        'jest',
-      ],
-    },
-    {
-      files: ['src/plugins/**'],
-      rules: {
-        'no-param-reassign': [
-          'error',
-          { ignorePropertyModificationsFor: ['ctx'], props: true },
-        ],
-      },
-    },
-    {
-      files: ['src/triggers/*.ts', 'src/effects/*.ts'],
-      rules: {
-        'sort-keys-fix/sort-keys-fix': 'off',
-      },
-    },
-  ],
-  parser: '@babel/eslint-parser',
+
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    babelOptions: {
-      configFile: './babel.config.cjs',
-    },
-    ecmaFeatures: {
-      generators: false,
-      globalReturn: true,
-      objectLiteralDuplicateProperties: false,
-    },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    project: ['./tsconfig.json'], // Specify it only for TypeScript files
   },
-  plugins: ['import', 'sort-keys-fix', 'typescript-sort-keys'],
+  plugins: [
+    'import',
+    '@typescript-eslint/eslint-plugin',
+    'eslint-plugin-tsdoc',
+    'sort-keys-fix',
+    'typescript-sort-keys',
+  ],
   root: true,
   rules: {
     'comma-dangle': [
@@ -105,7 +57,6 @@ module.exports = {
           'webpack.prod.cjs',
           'webpack.dev.cjs',
           'rollup.config.ts',
-          'setupTestFrameworkScriptFile.ts',
           '.eslintrc.cjs',
           '__tests__/**/*',
           '__mocks__/**/*',
@@ -128,11 +79,11 @@ module.exports = {
     'sort-imports': [
       'warn',
       {
-        allowSeparatedGroups: false,
         ignoreCase: false,
         ignoreDeclarationSort: false,
         ignoreMemberSort: false,
         memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        allowSeparatedGroups: false,
       },
     ],
     'sort-keys-fix/sort-keys-fix': 'warn',
@@ -163,4 +114,27 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      env: {
+        jest: true,
+        'jest/globals': true,
+      },
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+      files: tsTestConfig.include,
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: ['./tsconfig.test.json'], // Specify it only for TypeScript files
+      },
+      plugins: [
+        '@typescript-eslint/eslint-plugin',
+        'eslint-plugin-tsdoc',
+        'jest',
+      ],
+    },
+  ],
 };

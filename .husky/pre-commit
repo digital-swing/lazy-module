@@ -1,6 +1,4 @@
 #!/bin/bash
 . "$(dirname "$0")/_/husky.sh"
 
-# bash ./.husky/circleci-config-validate.sh
-
-# bash ./.husky/renovate-check.sh
+bash ./.husky/renovate-check.sh
