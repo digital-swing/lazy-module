@@ -14,6 +14,7 @@ on:
     branches:
       - main
       - '!renovate/**'
+  workflow_dispatch:
 
 jobs:
   coverage:

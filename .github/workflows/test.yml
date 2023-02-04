@@ -5,6 +5,8 @@ on:
       - '!renovate/pin-dependencies'
   pull_request:
     types: [assigned, opened, synchronize, reopened, labeled]
+  workflow_dispatch:
+
 name: Build & test
 jobs:
   release-please:

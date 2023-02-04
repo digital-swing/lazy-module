@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
 name: Update release PR / Create release
 jobs:
   release-please:
@@ -11,8 +13,8 @@ jobs:
         id: release
         with:
           bump-minor-pre-major: true
-          release-type: "node"
-          plugins: "sentence-case"
+          release-type: 'node'
+          plugins: 'sentence-case'
           changelog-types: '[{"type": "feat","section": "Fonctionnalités"},{"type": "fix","section": "Correctifs et mises à jour"},{"type": "perf","section": "Optimisations"},{"type": "docs","section": "Documentation"},{"type": "style","hidden": true},{"type": "chore","hidden": true},{"type": "refactor","hidden": true},{"type": "test","hidden": true}]'
       - uses: actions/checkout@v3
         if: ${{ steps.release.outputs.release_created }}
