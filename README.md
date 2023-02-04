@@ -1,8 +1,15 @@
 # lazy-module
 
+<div align="center">
+
+![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/LucasDemea/47afa2dca4215d90df6248220a886a3e/raw/lazy-module__heads_main.json&style=flat-square)
+[![CI Status](https://github.com/digital-swing/lazy-module/actions/workflows/test.yml/badge.svg)](https://github.com/digital-swing/lazy-module/actions/workflows/test.yml)
+
 Asynchronously load modules when they are required, thus reducing initial page load time.
 
 This package is useful if your app is loading heavy modules that you want to load only at the specific time they are required.
+
+</div>
 
 ## Installation
 
