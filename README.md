@@ -45,7 +45,7 @@ new moduleLoader({
 
 ## Custom parameters
 
-[See the full API in the docs](https://digital-swing.github.io/ripple/types/LazyModuleConfig.html).
+[See the full API in the docs](https://digital-swing.github.io/lazy-module/types/types/LazyModuleConfig.html).
 
 ## License
 
