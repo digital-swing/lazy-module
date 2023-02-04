@@ -1,11 +1,12 @@
 {
   "include": ["src/**/*.ts", "rollup.config.ts"],
-  "exclude": ["src/**/__mocks__/**/*.ts"],
+  "exclude": ["src/**/__mocks__/**/*.ts", "src/__tests__/**/*.ts"],
 
   "compilerOptions": {
     "target": "es6",
     "allowJs": true,
-    "rootDir": "src",
+    "resolveJsonModule": true,
+    "rootDir": ".",
     "outDir": "dist",
     "module": "ESNext",
     "esModuleInterop": true,
@@ -15,8 +16,7 @@
     "removeComments": true,
     "strict": true,
     "sourceMap": true,
-    "declaration": true,
-    "declarationDir": "dist/dts",
+    "declaration": false,
     "lib": ["ES2021", "DOM"]
   }
 }
