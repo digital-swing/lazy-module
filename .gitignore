@@ -6,4 +6,7 @@ build
 .history
 yarn-error.log
 coverage
+docs/*
 .npmrc
+!docs/.vuepress
+!docs/examples
