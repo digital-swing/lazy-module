@@ -5,25 +5,23 @@
 ![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/LucasDemea/47afa2dca4215d90df6248220a886a3e/raw/lazy-module__heads_main.json&style=flat-square)
 [![CI Status](https://github.com/digital-swing/lazy-module/actions/workflows/test.yml/badge.svg)](https://github.com/digital-swing/lazy-module/actions/workflows/test.yml)
 
-Asynchronously load modules when they are required, thus reducing initial page load time.
-
-This package is useful if your app is loading heavy modules that you want to load only at the specific time they are required.
+Reduce initial page load time by asynchronously loading modules, only when they are required.
 
 </div>
 
 ## Installation
 
 ```console
-npm install lazy-module
+npm install @digital-swing/lazy-module
 ```
 
 ```console
-yarn add lazy-module
+yarn add @digital-swing/lazy-module
 ```
 
-## Usage
+## Usage example
 
-`import { moduleLoader } from 'lazy-module';`
+`import { moduleLoader } from '@digital-swing/lazy-module';`
 
 ```js
 new moduleLoader({
@@ -45,65 +43,9 @@ new moduleLoader({
 }),
 ```
 
-## Constructor parameters
+## Custom parameters
 
-The constructor accepts an object with the following properties:
-
-```js
-type ModuleLoaderConfig = {
-  /**
-   * Element to watch
-   */
-  trigger: string,
-
-  /**
-   * Module to load
-   *
-   * @return  {<unknown>}The module that has been loaded. It can be anything: a class, a constant...
-   */
-  loader: () => Promise<unknown>,
-
-  /**
-   * What should be executed after the module has been imported.
-   *
-   * @param   {unknown}      module   The imported module
-   * @param   {HTMLElement}  element  The element that triggered the module import
-   *
-   * @return  {<module>}              [return description]
-   */
-  callback: (module: unknown, element?: HTMLElement) => unknown,
-
-  /**
-   * Should the module be loaded when the trigger enters the viewport, or deferred to when the browser is idle.
-   */
-  lazy: boolean,
-
-  /**
-   * Modules dependencies, in case one or many other modules must be loaded first.
-   */
-  dependsOn: moduleLoader[],
-
-  /**
-   * Intersection Observer options
-   */
-  observerOptions: {
-    /**
-     * The element used as viewport
-     */
-    root: Element | Document | null,
-
-    /**
-     * The distance from the root where the trigger will load the module
-     */
-    rootMargin: string,
-
-    /**
-     * Percentage of trigger visibility inside root
-     */
-    thresholds: Array<number>,
-  },
-};
-```
+[See the full API in the docs](https://digital-swing.github.io/ripple/types/LazyModuleConfig.html).
 
 ## License
 

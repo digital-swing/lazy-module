@@ -1,14 +1,13 @@
 import 'intersection-observer';
 import 'requestidlecallback-polyfill';
 
-type LazyModuleConfig = {
+export type LazyModuleConfig = {
   /**
-   * What should be executed after the module has been imported.
+   * Function to execute after the module has been imported.
    *
    * @param    module - The imported module
    * @param    element - The element that triggered the module import
    *
-   * @returns  [return description]
    */
   callback?: (module: unknown, element?: HTMLElement) => Promise<void>;
   /**
