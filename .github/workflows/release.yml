@@ -47,6 +47,8 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         with:
           registry-url: 'https://npm.pkg.github.com'
+      - run: pnpm install --frozen-lockfile
+        if: ${{ steps.release.outputs.release_created }}
       - run: pnpm build
         if: ${{ steps.release.outputs.release_created }}
       - run: pnpm publish
