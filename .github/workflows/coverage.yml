@@ -75,7 +75,7 @@ jobs:
         name: Create the Badge
         uses: schneegans/dynamic-badges-action@v1.6.0
         with:
-          auth: ${{ secrets.BADGES_GIST_TOKEN }}
+          auth: ${{ secrets.BADGE_GIST_TOKEN }}
           gistID: 47afa2dca4215d90df6248220a886a3e
           filename: ${{ github.event.repository.name }}__${{ env.BRANCH }}.json
           label: Test Coverage
