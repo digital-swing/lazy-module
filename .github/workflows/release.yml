@@ -12,6 +12,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
+          package-name: LazyModule
           bump-minor-pre-major: true
           release-type: 'node'
           plugins: 'sentence-case'
