@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/digital-swing/lazy-module/compare/v1.0.1...v1.0.2) (2023-02-07)
+
+
+### Documentation
+
+* Complete readme ([b29ceba](https://github.com/digital-swing/lazy-module/commit/b29ceba734fd2c8a8c2bc122479857f2af7dbec0))
+* Fix wrong url ([aba2f3a](https://github.com/digital-swing/lazy-module/commit/aba2f3a9fc2ce95cfd4d7c886844ec2ff9e70467))
+
 ## [1.0.1](https://github.com/digital-swing/lazy-module/compare/v1.0.0...v1.0.1) (2023-02-04)
 
 
