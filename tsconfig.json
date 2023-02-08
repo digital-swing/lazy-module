@@ -3,7 +3,7 @@
   "exclude": ["src/**/__mocks__/**/*.ts", "src/__tests__/**/*.ts"],
 
   "compilerOptions": {
-    "target": "es6",
+    "target": "esnext",
     "allowJs": true,
     "resolveJsonModule": true,
     "rootDir": ".",

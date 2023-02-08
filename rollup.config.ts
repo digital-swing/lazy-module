@@ -1,18 +1,22 @@
-import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts';
+
+import esbuild from 'rollup-plugin-esbuild';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 // import globImport, { camelCase } from 'rollup-plugin-glob-import';
 // import globImport from 'rollup-plugin-glob-import';
 import pkg from './package.json' assert { type: 'json' };
-import renameNodeModules from 'rollup-plugin-rename-node-modules';
 // import summary from 'rollup-plugin-summary';
 // import terser from '@rollup/plugin-terser';
-import typescript from '@rollup/plugin-typescript';
+
+const bundle = (config) => ({
+  ...config,
+  // external: (id) => !/^[./]/.test(id),
+  external: Object.keys(pkg.peerDependencies),
+  input: 'src/index.ts',
+});
 
 export default [
-  {
-    input: 'src/index.ts',
-    external: ['intersection-observer', 'requestidlecallback-polyfill'],
+  bundle({
     output: [
       {
         dir: 'dist',
@@ -35,25 +39,21 @@ export default [
         file: pkg.browser,
         format: 'umd',
         name: 'lazyModule',
-        // plugins: [terser()],
         sourcemap: true,
       },
     ],
     plugins: [
       nodeResolve(),
-      commonjs({
-        include: /node_modules/,
+      esbuild({
+        minify: true,
       }),
-      typescript({ sourceMap: true }),
-      renameNodeModules('external'),
     ],
-  },
-  {
-    input: 'src/index.ts',
+  }),
+  bundle({
     plugins: [dts()],
     output: {
       file: `dist/types/index.d.ts`,
       format: 'es',
     },
-  },
+  }),
 ];

@@ -30,7 +30,6 @@ module.exports = {
     'import',
     '@typescript-eslint/eslint-plugin',
     'eslint-plugin-tsdoc',
-    'sort-keys-fix',
     'typescript-sort-keys',
   ],
   root: true,
@@ -89,8 +88,6 @@ module.exports = {
     'sort-keys-fix/sort-keys-fix': 'warn',
 
     'tsdoc/syntax': 'warn',
-    'typescript-sort-keys/interface': 'warn',
-    'typescript-sort-keys/string-enum': 'warn',
   },
   settings: {
     'import/core-modules': [],
