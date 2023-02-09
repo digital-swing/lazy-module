@@ -30,22 +30,7 @@ export type LazyModuleConfig = {
   /**
    * Intersection Observer options
    */
-  observerOptions?: {
-    /**
-     * The element used as viewport
-     */
-    root: Element | Document | null;
-
-    /**
-     * The distance from the root where the trigger will load the module
-     */
-    rootMargin: string;
-
-    /**
-     * Percentage of trigger visibility inside root
-     */
-    thresholds: Array<number>;
-  };
+  observerOptions?: IntersectionObserverInit;
 
   /**
    * What triggers the module loading.
@@ -61,13 +46,12 @@ export type LazyModuleConfig = {
 export class LazyModule {
   trigger: NodeListOf<HTMLElement> =
     document.querySelectorAll<HTMLElement>('root');
-  loader!: () => Promise<void>;
-  callback: (module: unknown, element?: HTMLElement) => Promise<void> =
-    async () => Promise.resolve();
-  lazy = true;
-  on = 'scroll';
+  loader!: () => Promise<unknown>;
+  callback!: Required<LazyModuleConfig>['callback'];
+  lazy: Required<LazyModuleConfig>['lazy'] = true;
+  on: Required<LazyModuleConfig>['on'] = 'scroll';
   dependsOn: LazyModule[] = [];
-  observerOptions = {
+  observerOptions: Required<LazyModuleConfig>['observerOptions'] = {
     root: document,
     rootMargin: '0px 0px 0px 0px',
     thresholds: 0.0,
