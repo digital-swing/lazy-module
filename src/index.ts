@@ -68,9 +68,12 @@ export class LazyModule {
             return import(config.loader as string);
           }
         : this.loader;
+    this.dependsOn = Array.isArray(this.dependsOn)
+      ? this.dependsOn
+      : [this.dependsOn];
   }
   init = () => {
-    //if component found on page
+    // component found in page
     if (this.trigger) {
       switch (this.on) {
         case 'scroll':
@@ -104,9 +107,7 @@ export class LazyModule {
   _loadModule = async () => {
     // wait for all dependencies to be loaded
     await Promise.all(
-      ([] as LazyModule[])
-        .concat(this.dependsOn)
-        .map((module) => module._loadModule())
+      this.dependsOn.map((module) => module._loadModule())
     ).then(async () => {
       await this.loader()
         .then(async (module) => {
