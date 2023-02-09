@@ -15,5 +15,5 @@ jobs:
           bump-minor-pre-major: true
           release-type: 'node'
           plugins: 'sentence-case'
-          changelog-types: '[{"type": "feat","section": "Fonctionnalités"},{"type": "fix","section": "Correctifs et mises à jour"},{"type": "perf","section": "Optimisations"},{"type": "docs","section": "Documentation"},{"type": "style","hidden": true},{"type": "chore","hidden": true},{"type": "refactor","hidden": true},{"type": "test","hidden": true}]'
+          changelog-types: '[{"type": "feat","section": "Added"},{"type": "fix","section": "Fixed"},{"type": "refactor","section": "Changed"},{"type": "perf","section": "Optimizations"},{"type": "docs","section": "Documentation"},{"type": "style","hidden": true},{"type": "chore","hidden": true},{"type": "test","hidden": true}]'
           token: ${{ secrets.GH_TOKEN }}
