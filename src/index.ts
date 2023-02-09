@@ -54,7 +54,7 @@ export class LazyModule {
   observerOptions: Required<LazyModuleConfig>['observerOptions'] = {
     root: document,
     rootMargin: '0px 0px 0px 0px',
-    thresholds: 0.0,
+    threshold: 0.0,
   };
   constructor(config: LazyModuleConfig) {
     Object.assign(this, config);
