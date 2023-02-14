@@ -19,7 +19,19 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: 'pnpm'
-      - name: Create .npmrc file
+
+      - name: Create .npmrc file for github registry
+        run: |
+          echo '//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}
+          @digital-swing:registry=https://npm.pkg.github.com
+          always-auth = true
+          auto-install-peers=true' > ${{ github.workspace }}/.npmrc
+
+      - run: pnpm install
+      - run: pnpm build
+      - run: pnpm publish --access restricted --no-git-checks
+
+      - name: Create .npmrc file for npm registry
         run: |
           echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN  }}
           @digital-swing:registry=https://registry.npmjs.org/
@@ -28,4 +40,4 @@ jobs:
 
       - run: pnpm install
       - run: pnpm build
-      - run: pnpm publish
+      - run: pnpm publish --access public --no-git-checks
