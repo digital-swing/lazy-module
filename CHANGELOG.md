@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.0.2](https://github.com/digital-swing/lazy-module/compare/v1.0.1...v1.0.2) (2023-02-14)
+
+
+### Documentation
+
+* Complete readme ([b29ceba](https://github.com/digital-swing/lazy-module/commit/b29ceba734fd2c8a8c2bc122479857f2af7dbec0))
+* Fix wrong url ([aba2f3a](https://github.com/digital-swing/lazy-module/commit/aba2f3a9fc2ce95cfd4d7c886844ec2ff9e70467))
+
+
+### Fixed
+
+* Fix threshold setting name ([c401541](https://github.com/digital-swing/lazy-module/commit/c4015412cbe236ff13685736fe44c1973be3eb73))
+
+
+### Changed
+
+* Normalize dependencies in constructor ([ff91e9a](https://github.com/digital-swing/lazy-module/commit/ff91e9a1e6e7d317ff238b3b662caf93a7da6a15))
+* Refactor types ([379ba0c](https://github.com/digital-swing/lazy-module/commit/379ba0c716f03297c301ab7c38936a3fa4137449))
+
 ## [1.0.1](https://github.com/digital-swing/lazy-module/compare/v1.0.0...v1.0.1) (2023-02-04)
 
 
