@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/digital-swing/lazy-module/compare/v1.0.2...v2.0.0) (2023-03-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove loader as a string support
+
+### Changed
+
+* Remove loader as a string support ([1c9c9c5](https://github.com/digital-swing/lazy-module/commit/1c9c9c54ea42973b07ace09cd3799044c1b8e63a))
+
 ## [1.0.2](https://github.com/digital-swing/lazy-module/compare/v1.0.1...v1.0.2) (2023-02-14)
 
 
