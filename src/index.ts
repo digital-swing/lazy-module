@@ -25,7 +25,7 @@ export type LazyModuleConfig = {
    *
    * @returns  The module that has been loaded. It can be anything: a class, a constant...
    */
-  loader: string | (() => Promise<unknown>);
+  loader: () => Promise<unknown>;
 
   /**
    * Intersection Observer options
@@ -34,6 +34,11 @@ export type LazyModuleConfig = {
 
   /**
    * What triggers the module loading.
+   */
+  when?: 'immediate' | 'interact' | 'idle';
+
+  /**
+   * What triggers the module loading in `interaction` mode.
    */
   on?: 'scroll' | 'click' | 'hover';
 
@@ -49,6 +54,7 @@ export class LazyModule {
   loader!: () => Promise<unknown>;
   callback!: Required<LazyModuleConfig>['callback'];
   lazy: Required<LazyModuleConfig>['lazy'] = true;
+  when: Required<LazyModuleConfig>['when'] = 'interact';
   on: Required<LazyModuleConfig>['on'] = 'scroll';
   dependsOn: LazyModule[] = [];
   observerOptions: Required<LazyModuleConfig>['observerOptions'] = {
@@ -62,12 +68,6 @@ export class LazyModule {
       typeof this.trigger === 'string'
         ? document.querySelectorAll(this.trigger)
         : this.trigger;
-    this.loader =
-      typeof config.loader === 'string'
-        ? () => {
-            return import(config.loader as string);
-          }
-        : this.loader;
     this.dependsOn = Array.isArray(this.dependsOn)
       ? this.dependsOn
       : [this.dependsOn];
