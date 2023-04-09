@@ -76,11 +76,11 @@ devDependencies:
     specifier: 10.9.1
     version: 10.9.1(@types/node@18.15.11)(typescript@5.0.4)
   typedoc:
-    specifier: 0.23.28
-    version: 0.23.28(typescript@5.0.4)
+    specifier: 0.24.1
+    version: 0.24.1(typescript@5.0.4)
   typedoc-plugin-markdown:
     specifier: 3.14.0
-    version: 3.14.0(typedoc@0.23.28)
+    version: 3.14.0(typedoc@0.24.1)
   typescript:
     specifier: 5.0.4
     version: 5.0.4
@@ -4469,17 +4469,17 @@ packages:
       is-typed-array: 1.1.10
     dev: true
 
-  /typedoc-plugin-markdown@3.14.0(typedoc@0.23.28):
+  /typedoc-plugin-markdown@3.14.0(typedoc@0.24.1):
     resolution: {integrity: sha512-UyQLkLRkfTFhLdhSf3RRpA3nNInGn+k6sll2vRXjflaMNwQAAiB61SYbisNZTg16t4K1dt1bPQMMGLrxS0GZ0Q==}
     peerDependencies:
       typedoc: '>=0.23.0'
     dependencies:
       handlebars: 4.7.7
-      typedoc: 0.23.28(typescript@5.0.4)
+      typedoc: 0.24.1(typescript@5.0.4)
     dev: true
 
-  /typedoc@0.23.28(typescript@5.0.4):
-    resolution: {integrity: sha512-9x1+hZWTHEQcGoP7qFmlo4unUoVJLB0H/8vfO/7wqTnZxg4kPuji9y3uRzEu0ZKez63OJAUmiGhUrtukC6Uj3w==}
+  /typedoc@0.24.1(typescript@5.0.4):
+    resolution: {integrity: sha512-u4HwjZcSQhQSkkhLjgcs0ooAf6HrFVLDHHrwU2xZW8WxH0KnGZlNkaWxiOcK5Gagj7mxJSgwWx0dv8ACDAOXAQ==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
