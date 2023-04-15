@@ -79,8 +79,8 @@ devDependencies:
     specifier: 0.24.1
     version: 0.24.1(typescript@5.0.4)
   typedoc-plugin-markdown:
-    specifier: 3.14.0
-    version: 3.14.0(typedoc@0.24.1)
+    specifier: 3.15.1
+    version: 3.15.1(typedoc@0.24.1)
   typescript:
     specifier: 5.0.4
     version: 5.0.4
@@ -4469,10 +4469,10 @@ packages:
       is-typed-array: 1.1.10
     dev: true
 
-  /typedoc-plugin-markdown@3.14.0(typedoc@0.24.1):
-    resolution: {integrity: sha512-UyQLkLRkfTFhLdhSf3RRpA3nNInGn+k6sll2vRXjflaMNwQAAiB61SYbisNZTg16t4K1dt1bPQMMGLrxS0GZ0Q==}
+  /typedoc-plugin-markdown@3.15.1(typedoc@0.24.1):
+    resolution: {integrity: sha512-TaXE8gc8s5YepU1Ogyqfkh+khPE1/n4rV5vaoZCNyXvSLv62jWmHf443lHiQh7r07qAimUOKAndaaufAeIUSiQ==}
     peerDependencies:
-      typedoc: '>=0.23.0'
+      typedoc: '>=0.24.0'
     dependencies:
       handlebars: 4.7.7
       typedoc: 0.24.1(typescript@5.0.4)
