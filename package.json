@@ -43,7 +43,7 @@
     "requestidlecallback-polyfill": "^1.0.2"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "15.0.2",
+    "@rollup/plugin-node-resolve": "15.1.0",
     "@rollup/plugin-typescript": "11.1.1",
     "@types/node": "18.16.16",
     "@typescript-eslint/eslint-plugin": "5.59.8",
