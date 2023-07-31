@@ -1,5 +1,7 @@
-import 'intersection-observer';
-import 'requestidlecallback-polyfill';
+import { optionalRequire } from "optional-require";
+
+optionalRequire('intersection-observer');
+optionalRequire('requestidlecallback-polyfill');
 
 export type LazyModuleConfig = {
   /**
