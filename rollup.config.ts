@@ -7,11 +7,12 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import pkg from './package.json' assert { type: 'json' };
 // import summary from 'rollup-plugin-summary';
 // import terser from '@rollup/plugin-terser';
+import { RollupOptions } from "rollup";
 
-const bundle = (config) => ({
+const bundle = (config:RollupOptions) => ({
   ...config,
   // external: (id) => !/^[./]/.test(id),
-  external: Object.keys(pkg.peerDependencies),
+  external: Object.keys(pkg.optionalDependencies),
   input: 'src/index.ts',
 });
 
