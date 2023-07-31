@@ -1,4 +1,4 @@
-import { optionalRequire } from "optional-require";
+const { optionalRequire } = require("optional-require");
 
 optionalRequire('intersection-observer');
 optionalRequire('requestidlecallback-polyfill');
