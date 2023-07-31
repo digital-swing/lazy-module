@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/digital-swing/lazy-module/compare/v2.0.1...v2.0.2) (2023-07-31)
+
+
+### Fixed
+
+* Require optional-require ([e596901](https://github.com/digital-swing/lazy-module/commit/e596901476aa98b33bca6f44eedc020e26cdb0b0))
+
 ## [2.0.1](https://github.com/digital-swing/lazy-module/compare/v2.0.0...v2.0.1) (2023-07-31)
 
 
