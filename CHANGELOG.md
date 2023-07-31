@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/digital-swing/lazy-module/compare/v2.0.2...v2.0.3) (2023-07-31)
+
+
+### Fixed
+
+* Fix conditional-require import ([4dc7cf5](https://github.com/digital-swing/lazy-module/commit/4dc7cf534b60e824965222c6735c8baffdbf032f))
+
 ## [2.0.2](https://github.com/digital-swing/lazy-module/compare/v2.0.1...v2.0.2) (2023-07-31)
 
 
