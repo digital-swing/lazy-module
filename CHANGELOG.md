@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/digital-swing/lazy-module/compare/v2.0.0...v2.0.1) (2023-07-31)
+
+
+### Fixed
+
+* Conditional require optional dependencies ([c21dd15](https://github.com/digital-swing/lazy-module/commit/c21dd15d81610fe9bcbc22f439a61e8d0cb99af5))
+
 ## [2.0.0](https://github.com/digital-swing/lazy-module/compare/v1.0.2...v2.0.0) (2023-03-17)
 
 
