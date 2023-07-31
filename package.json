@@ -30,7 +30,7 @@
     "test": "jest --passWithNoTests",
     "cov": "jest --coverage --passWithNoTests",
     "lint": "npm run lint:js && npm run lint:css",
-    "docs:html": "typedoc --plugin none --readme none --out docs/types src/index.ts",
+    "docs:html": "typedoc --readme none --out docs/types src/index.ts",
     "docs:md": "typedoc --plugin typedoc-plugin-markdown --readme none --out docs/types src/index.ts",
     "docs:dev": "vuepress dev docs",
     "docs:vue": "vuepress build docs",
