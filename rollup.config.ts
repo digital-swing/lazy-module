@@ -1,18 +1,13 @@
 import dts from 'rollup-plugin-dts';
-
+import commonjs from '@rollup/plugin-commonjs';
 import esbuild from 'rollup-plugin-esbuild';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-// import globImport, { camelCase } from 'rollup-plugin-glob-import';
-// import globImport from 'rollup-plugin-glob-import';
 import pkg from './package.json' assert { type: 'json' };
-// import summary from 'rollup-plugin-summary';
-// import terser from '@rollup/plugin-terser';
-import { RollupOptions } from "rollup";
+import { RollupOptions } from 'rollup';
 
-const bundle = (config:RollupOptions) => ({
+const bundle = (config: RollupOptions) => ({
   ...config,
   // external: (id) => !/^[./]/.test(id),
-  external: Object.keys(pkg.optionalDependencies),
   input: 'src/index.ts',
 });
 
@@ -35,26 +30,20 @@ export default [
         preserveModulesRoot: 'src',
         sourcemap: true,
       },
-      {
-        exports: 'named',
-        file: pkg.browser,
-        format: 'umd',
-        name: 'lazyModule',
-        sourcemap: true,
-      },
     ],
     plugins: [
+      commonjs(),
       nodeResolve(),
       esbuild({
         minify: true,
       }),
     ],
   }),
-  bundle({
-    plugins: [dts()],
-    output: {
-      file: `dist/types/index.d.ts`,
-      format: 'es',
-    },
-  }),
+  // bundle({
+  //   plugins: [dts()],
+  //   output: {
+  //     file: `dist/types/index.d.ts`,
+  //     format: 'es',
+  //   },
+  // }),
 ];

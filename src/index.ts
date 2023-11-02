@@ -1,8 +1,3 @@
-const optionalRequire = require("optional-require")(require);
-
-optionalRequire('intersection-observer');
-optionalRequire('requestidlecallback-polyfill');
-
 export type LazyModuleConfig = {
   /**
    * Function to execute after the module has been imported.
@@ -74,7 +69,15 @@ export class LazyModule {
       ? this.dependsOn
       : [this.dependsOn];
   }
-  init = () => {
+  init = async () => {
+    if (!('IntersectionObserver' in window)) {
+      await import('intersection-observer');
+    }
+
+    if (!('requestIdleCallback' in window)) {
+      await import('requestidlecallback-polyfill');
+    }
+
     // component found in page
     if (this.trigger) {
       switch (this.on) {
