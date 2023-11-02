@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/digital-swing/lazy-module/compare/v2.0.3...v2.0.4) (2023-11-02)
+
+
+### Fixed
+
+* Polyfill dynamic imports ([56b4a11](https://github.com/digital-swing/lazy-module/commit/56b4a119179fad32cddf2f2801f27ab991ce094a))
+
 ## [2.0.3](https://github.com/digital-swing/lazy-module/compare/v2.0.2...v2.0.3) (2023-07-31)
 
 
