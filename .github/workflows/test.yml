@@ -7,7 +7,7 @@ on:
     types: [assigned, opened, synchronize, reopened, labeled]
   workflow_dispatch:
 
-name: Build & test
+name: Build & Test
 jobs:
   release-please:
     runs-on: ${{ matrix.os }}
@@ -38,4 +38,5 @@ jobs:
           auto-install-peers=true' >> ${{ github.workspace }}/.npmrc
 
       - run: pnpm install
+      - run: pnpm build
       - run: pnpm test
