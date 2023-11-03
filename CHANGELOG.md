@@ -1,5 +1,44 @@
 # Changelog
 
+## [2.0.5](https://github.com/digital-swing/lazy-module/compare/v2.0.4...v2.0.5) (2023-11-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove loader as a string support
+
+* Release 2.0.5 ([ccbf357](https://github.com/digital-swing/lazy-module/commit/ccbf357d23d59bfa3abd8d6469866d5981eb1e22))
+
+
+### Added
+
+* Add different trigger types ([67f0030](https://github.com/digital-swing/lazy-module/commit/67f003055ab1f66674b5caf2e825a59d51459597))
+
+
+### Fixed
+
+* Conditional require optional dependencies ([c21dd15](https://github.com/digital-swing/lazy-module/commit/c21dd15d81610fe9bcbc22f439a61e8d0cb99af5))
+* Fix conditional-require import ([4dc7cf5](https://github.com/digital-swing/lazy-module/commit/4dc7cf534b60e824965222c6735c8baffdbf032f))
+* Fix threshold setting name ([c401541](https://github.com/digital-swing/lazy-module/commit/c4015412cbe236ff13685736fe44c1973be3eb73))
+* Polyfill dynamic imports ([56b4a11](https://github.com/digital-swing/lazy-module/commit/56b4a119179fad32cddf2f2801f27ab991ce094a))
+* Require optional-require ([e596901](https://github.com/digital-swing/lazy-module/commit/e596901476aa98b33bca6f44eedc020e26cdb0b0))
+
+
+### Changed
+
+* Normalize dependencies in constructor ([ff91e9a](https://github.com/digital-swing/lazy-module/commit/ff91e9a1e6e7d317ff238b3b662caf93a7da6a15))
+* Refactor types ([379ba0c](https://github.com/digital-swing/lazy-module/commit/379ba0c716f03297c301ab7c38936a3fa4137449))
+* Remove loader as a string support ([1c9c9c5](https://github.com/digital-swing/lazy-module/commit/1c9c9c54ea42973b07ace09cd3799044c1b8e63a))
+
+
+### Documentation
+
+* Add coverage & CI badges ([ea2db74](https://github.com/digital-swing/lazy-module/commit/ea2db74b41d9b4d56894fe5ef66fccd17e2bd7d0))
+* Complete readme ([b29ceba](https://github.com/digital-swing/lazy-module/commit/b29ceba734fd2c8a8c2bc122479857f2af7dbec0))
+* Fix readme typo ([913e098](https://github.com/digital-swing/lazy-module/commit/913e098c14b5085ba7069ea0377780a64beca7bf))
+* Fix wrong url ([aba2f3a](https://github.com/digital-swing/lazy-module/commit/aba2f3a9fc2ce95cfd4d7c886844ec2ff9e70467))
+* Update docs ([7f41be6](https://github.com/digital-swing/lazy-module/commit/7f41be6daa9f152cccb26b251f702b129f94462c))
+
 ## [2.0.4](https://github.com/digital-swing/lazy-module/compare/v2.0.3...v2.0.4) (2023-11-02)
 
 
