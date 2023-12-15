@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/digital-swing/lazy-module/compare/v2.0.5...v2.1.0) (2023-12-15)
+
+
+### Features
+
+* accept multiple loader formats : string, promise, promise[] ([5445422](https://github.com/digital-swing/lazy-module/commit/5445422cacff227191f5e4481adcdb3ee58cdd3a))
+
+
+### Bug Fixes
+
+* fix module loading ([a492f4a](https://github.com/digital-swing/lazy-module/commit/a492f4ad9d3c90bb29145ba05a5aba60442dec68))
+
 ## [2.0.5](https://github.com/digital-swing/lazy-module/compare/v2.0.4...v2.0.5) (2023-11-03)
 
 
