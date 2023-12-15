@@ -6,7 +6,9 @@ export type LazyModuleConfig = {
    * @param    element - The element that triggered the module import
    *
    */
-  callback?: (module: unknown, element?: HTMLElement) => Promise<void>;
+  callback?:
+    | ((module: unknown, element?: unknown) => Promise<void>)
+    | ((module: unknown, element?: unknown) => void);
   /**
    * LazyModules dependencies, in case one or many other modules must be loaded first.
    */
@@ -22,7 +24,7 @@ export type LazyModuleConfig = {
    *
    * @returns  The module that has been loaded. It can be anything: a class, a constant...
    */
-  loader: () => Promise<unknown>;
+  loader: string | string[] | (() => Promise<unknown>);
 
   /**
    * Intersection Observer options
@@ -48,8 +50,8 @@ export type LazyModuleConfig = {
 export class LazyModule {
   trigger: NodeListOf<HTMLElement> =
     document.querySelectorAll<HTMLElement>('root');
-  loader!: () => Promise<unknown>;
-  callback!: Required<LazyModuleConfig>['callback'];
+  loader!: Required<LazyModuleConfig>['loader'];
+  callback?: LazyModuleConfig['callback'];
   lazy: Required<LazyModuleConfig>['lazy'] = true;
   when: Required<LazyModuleConfig>['when'] = 'interact';
   on: Required<LazyModuleConfig>['on'] = 'scroll';
@@ -113,21 +115,52 @@ export class LazyModule {
     // wait for all dependencies to be loaded
     await Promise.all(
       this.dependsOn.map((module) => module._loadModule())
-    ).then(async () => {
-      await this.loader()
-        .then(async (module) => {
-          await Promise.all(
-            Array.prototype.map.call(
-              this.trigger,
-              async (trig: HTMLElement) => {
-                await this.callback(module, trig);
-              }
+    ).then(() => {
+      switch (true) {
+        case typeof this.loader === 'string':
+          import(this.loader as string)
+            .then((module) => {
+              Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
+                this.callback && void this.callback(module, trig);
+              });
+            })
+            .catch((error: Error) => {
+              console.error(error.message);
+            });
+          break;
+
+        case typeof this.loader === 'function':
+          (this.loader as () => Promise<unknown>)()
+            .then((module: unknown) => {
+              void Promise.all(
+                Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
+                  this.callback && void this.callback(module, trig);
+                })
+              );
+            })
+            .catch((error: Error) => {
+              console.error(error.message);
+            });
+          break;
+
+        case typeof this.loader === 'object':
+          Promise.all(
+            (this.loader as string[]).map(
+              (moduleName) => () => import(moduleName)
             )
-          );
-        })
-        .catch((error: Error) => {
-          console.error(error.message);
-        });
+          )
+            .then((module) => {
+              void Promise.all(
+                Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
+                  this.callback && void this.callback(module, trig);
+                })
+              );
+            })
+            .catch((error: Error) => {
+              console.error(error.message);
+            });
+          break;
+      }
     });
   };
 
