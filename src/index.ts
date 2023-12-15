@@ -6,9 +6,7 @@ export type LazyModuleConfig = {
    * @param    element - The element that triggered the module import
    *
    */
-  callback?:
-    | ((module: unknown, element?: unknown) => Promise<void>)
-    | ((module: unknown, element?: unknown) => void);
+  callback?: (module: any, element: HTMLElement) => void | Promise<void>;
   /**
    * LazyModules dependencies, in case one or many other modules must be loaded first.
    */
@@ -24,7 +22,11 @@ export type LazyModuleConfig = {
    *
    * @returns  The module that has been loaded. It can be anything: a class, a constant...
    */
-  loader: string | string[] | (() => Promise<unknown>);
+  loader:
+    | string
+    | string[]
+    | (() => Promise<unknown>)
+    | (() => Promise<unknown>)[];
 
   /**
    * Intersection Observer options
@@ -91,12 +93,14 @@ export class LazyModule {
           break;
         case 'click':
           this.trigger.forEach((el: HTMLElement) => {
-            el.addEventListener('click', this._handleClick, { once: true });
+            el.addEventListener('click', () => this._handleClick, {
+              once: true,
+            });
           });
           break;
         case 'hover':
           this.trigger.forEach((el: HTMLElement) => {
-            el.addEventListener('mouseenter', this._loadModule);
+            el.addEventListener('mouseenter', () => this._loadModule);
           });
           break;
       }
@@ -123,7 +127,7 @@ export class LazyModule {
 
         case typeof this.loader === 'function':
           (this.loader as () => Promise<unknown>)()
-            .then((module: unknown) => {
+            .then((module) => {
               void Promise.all(
                 Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
                   this.callback && void this.callback(module, trig);
@@ -135,10 +139,33 @@ export class LazyModule {
             });
           break;
 
-        case typeof this.loader === 'object':
+        case Array.isArray(this.loader) &&
+          this.loader.every((loader) => typeof loader === 'string'):
           Promise.all(
-            (this.loader as string[]).map(
-              (moduleName) => () => import(moduleName)
+            (this.loader as string[]).map((moduleName) => import(moduleName))
+          )
+            .then((module) => {
+              void Promise.all(
+                Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
+                  this.callback && void this.callback(module, trig);
+                })
+              );
+            })
+            .catch((error: Error) => {
+              console.error(error.message);
+            });
+          break;
+        case Array.isArray(this.loader) &&
+          this.loader.every(
+            (loader) =>
+              typeof loader !== 'string' &&
+              'then' in loader() &&
+              typeof loader().then === 'function'
+          ):
+          // Promise.all(this.loader as (() => Promise<unknown>)[])
+          Promise.all(
+            (this.loader as (() => Promise<unknown>)[]).map((promise) =>
+              promise()
             )
           )
             .then((module) => {
@@ -162,7 +189,7 @@ export class LazyModule {
   ) => {
     domElements.forEach((el) => {
       if (el.isIntersecting) {
-        this._loadModule().finally(() => observer.disconnect());
+        void this._loadModule().finally(() => observer.disconnect());
       }
     });
   };
