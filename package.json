@@ -4,11 +4,18 @@
   "description": "Asynchroneously load modules when they are required",
   "type": "module",
   "main": "./dist/index.mjs",
-  "exports": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "browser": "./dist/bundle.min.js",
   "unpkg": "./dist/bundle.min.js",
   "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/types/index.d.ts",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    }
+  },
   "files": [
     "/dist",
     "/types"
