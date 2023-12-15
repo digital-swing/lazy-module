@@ -37,7 +37,7 @@ export type LazyModuleConfig = {
   when?: 'immediate' | 'interact' | 'idle';
 
   /**
-   * What triggers the module loading in `interaction` mode.
+   * What triggers the module loading in `interact` mode.
    */
   on?: 'scroll' | 'click' | 'hover';
 
@@ -71,15 +71,7 @@ export class LazyModule {
       ? this.dependsOn
       : [this.dependsOn];
   }
-  init = async () => {
-    if (!('IntersectionObserver' in window)) {
-      await import('intersection-observer');
-    }
-
-    if (!('requestIdleCallback' in window)) {
-      await import('requestidlecallback-polyfill');
-    }
-
+  init = () => {
     // component found in page
     if (this.trigger) {
       switch (this.on) {
