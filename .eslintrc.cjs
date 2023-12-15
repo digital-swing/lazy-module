@@ -31,6 +31,7 @@ module.exports = {
     '@typescript-eslint/eslint-plugin',
     'eslint-plugin-tsdoc',
     'typescript-sort-keys',
+    'sort-keys-fix',
   ],
   root: true,
   rules: {
