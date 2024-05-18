@@ -91,8 +91,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       rollup-plugin-dts:
-        specifier: 6.1.0
-        version: 6.1.0(rollup@4.17.2)(typescript@5.4.5)
+        specifier: 6.1.1
+        version: 6.1.1(rollup@4.17.2)(typescript@5.4.5)
       rollup-plugin-esbuild:
         specifier: 6.1.1
         version: 6.1.1(esbuild@0.21.3)(rollup@4.17.2)
@@ -127,6 +127,10 @@ packages:
 
   '@babel/code-frame@7.22.13':
     resolution: {integrity: sha512-XktuhWlJ5g+3TJXc5upd9Ks1HutSArik6jf2eAjYFyIOf4ej3RN+184cZbzDvbPnuTJIUhPKKJE3cIsYTiAT3w==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/code-frame@7.24.2':
+    resolution: {integrity: sha512-y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/compat-data@7.20.14':
@@ -187,6 +191,10 @@ packages:
     resolution: {integrity: sha512-aJXu+6lErq8ltp+JhkJUfk1MTGyuA4v7f3pA+BJ5HLfNC6nAQ0Cpi9uOquUj8Hehg0aUiHzWQbOVJGao6ztBAQ==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/helper-validator-identifier@7.24.5':
+    resolution: {integrity: sha512-3q93SSKX2TWCG30M2G2kwaKeTYgEUp5Snjuj8qm729SObL6nbtUldAi37qbxkD5gg3xnBio+f9nqpSepGZMvxA==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/helper-validator-option@7.18.6':
     resolution: {integrity: sha512-XO7gESt5ouv/LRJdrVjkShckw6STTaB7l9BrpBaAHDeF5YZT+01PCwmR0SJHnkW6i8OwW/EVWRShfi4j2x+KQw==}
     engines: {node: '>=6.9.0'}
@@ -197,6 +205,10 @@ packages:
 
   '@babel/highlight@7.22.13':
     resolution: {integrity: sha512-C/BaXcnnvBCmHTpz/VGZ8jgtE2aYlW4hxDhseJAWZb7gqGM/qtCK6iZUb0TyKFf7BOUsBH7Q7fkRsDRhg1XklQ==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/highlight@7.24.5':
+    resolution: {integrity: sha512-8lLmua6AVh/8SLJRRVD6V8p73Hir9w5mJrhE+IPpILG31KKlI9iz5zmBYKcWPS59qSfgP9RaSBQSHHE81WKuEw==}
     engines: {node: '>=6.9.0'}
 
   '@babel/parser@7.20.15':
@@ -2381,6 +2393,9 @@ packages:
   lunr@2.3.9:
     resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
 
+  magic-string@0.30.10:
+    resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
+
   magic-string@0.30.4:
     resolution: {integrity: sha512-Q/TKtsC5BPm0kGqgBIF9oXAs/xEf2vRKiIB4wCRQTJOQIByZ1d+NnUOotvJOvNpi5RNIgVOMC3pOuaP1ZTDlVg==}
     engines: {node: '>=12'}
@@ -2723,8 +2738,8 @@ packages:
     resolution: {integrity: sha512-/VpLMtDy+8wwRlDANuYmDa9ss/knGsAgrDhM+tEwB1npHwNu4DYNmDfUL55csse/GHs9Q+SMT/rw9uiaZ3pnzA==}
     engines: {node: '>=10'}
 
-  rollup-plugin-dts@6.1.0:
-    resolution: {integrity: sha512-ijSCPICkRMDKDLBK9torss07+8dl9UpY9z1N/zTeA1cIqdzMlpkV3MOOC7zukyvQfDyxa1s3Dl2+DeiP/G6DOw==}
+  rollup-plugin-dts@6.1.1:
+    resolution: {integrity: sha512-aSHRcJ6KG2IHIioYlvAOcEq6U99sVtqDDKVhnwt70rW6tsz3tv5OSjEiWcgzfsHdLyGXZ/3b/7b/+Za3Y6r1XA==}
     engines: {node: '>=16'}
     peerDependencies:
       rollup: ^3.29.4 || ^4
@@ -3211,6 +3226,12 @@ snapshots:
       '@babel/highlight': 7.22.13
       chalk: 2.4.2
 
+  '@babel/code-frame@7.24.2':
+    dependencies:
+      '@babel/highlight': 7.24.5
+      picocolors: 1.0.0
+    optional: true
+
   '@babel/compat-data@7.20.14': {}
 
   '@babel/core@7.20.12':
@@ -3290,6 +3311,9 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.22.5': {}
 
+  '@babel/helper-validator-identifier@7.24.5':
+    optional: true
+
   '@babel/helper-validator-option@7.18.6': {}
 
   '@babel/helpers@7.20.13':
@@ -3305,6 +3329,14 @@ snapshots:
       '@babel/helper-validator-identifier': 7.22.5
       chalk: 2.4.2
       js-tokens: 4.0.0
+
+  '@babel/highlight@7.24.5':
+    dependencies:
+      '@babel/helper-validator-identifier': 7.24.5
+      chalk: 2.4.2
+      js-tokens: 4.0.0
+      picocolors: 1.0.0
+    optional: true
 
   '@babel/parser@7.20.15':
     dependencies:
@@ -5936,6 +5968,10 @@ snapshots:
 
   lunr@2.3.9: {}
 
+  magic-string@0.30.10:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.15
+
   magic-string@0.30.4:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
@@ -6241,13 +6277,13 @@ snapshots:
     dependencies:
       del: 5.1.0
 
-  rollup-plugin-dts@6.1.0(rollup@4.17.2)(typescript@5.4.5):
+  rollup-plugin-dts@6.1.1(rollup@4.17.2)(typescript@5.4.5):
     dependencies:
-      magic-string: 0.30.4
+      magic-string: 0.30.10
       rollup: 4.17.2
       typescript: 5.4.5
     optionalDependencies:
-      '@babel/code-frame': 7.22.13
+      '@babel/code-frame': 7.24.2
 
   rollup-plugin-esbuild@6.1.1(esbuild@0.21.3)(rollup@4.17.2):
     dependencies:
