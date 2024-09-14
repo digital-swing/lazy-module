@@ -88,8 +88,8 @@ importers:
         specifier: 4.21.3
         version: 4.21.3
       rollup-plugin-delete:
-        specifier: 2.0.0
-        version: 2.0.0
+        specifier: 2.1.0
+        version: 2.1.0(rollup@4.21.3)
       rollup-plugin-dts:
         specifier: 6.1.1
         version: 6.1.1(rollup@4.21.3)(typescript@5.5.4)
@@ -1790,10 +1790,6 @@ packages:
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
 
-  fast-glob@3.2.12:
-    resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==}
-    engines: {node: '>=8.6.0'}
-
   fast-glob@3.3.2:
     resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
     engines: {node: '>=8.6.0'}
@@ -2961,9 +2957,11 @@ packages:
     engines: {node: 20 || >=22}
     hasBin: true
 
-  rollup-plugin-delete@2.0.0:
-    resolution: {integrity: sha512-/VpLMtDy+8wwRlDANuYmDa9ss/knGsAgrDhM+tEwB1npHwNu4DYNmDfUL55csse/GHs9Q+SMT/rw9uiaZ3pnzA==}
+  rollup-plugin-delete@2.1.0:
+    resolution: {integrity: sha512-TEbqJd7giLvzQDTu4jSPufwhTJs/iYVN2LfR/YIYkqjC/oZ0/h9Q0AeljifIhzBzJYZtHQTWKEbMms5fbh54pw==}
     engines: {node: '>=10'}
+    peerDependencies:
+      rollup: '*'
 
   rollup-plugin-dts@6.1.1:
     resolution: {integrity: sha512-aSHRcJ6KG2IHIioYlvAOcEq6U99sVtqDDKVhnwt70rW6tsz3tv5OSjEiWcgzfsHdLyGXZ/3b/7b/+Za3Y6r1XA==}
@@ -5518,14 +5516,6 @@ snapshots:
 
   fast-deep-equal@3.1.3: {}
 
-  fast-glob@3.2.12:
-    dependencies:
-      '@nodelib/fs.stat': 2.0.5
-      '@nodelib/fs.walk': 1.2.8
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.5
-
   fast-glob@3.3.2:
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -5733,7 +5723,7 @@ snapshots:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.12
+      fast-glob: 3.3.2
       glob: 7.2.3
       ignore: 5.3.1
       merge2: 1.4.1
@@ -6911,9 +6901,10 @@ snapshots:
       glob: 11.0.0
       package-json-from-dist: 1.0.0
 
-  rollup-plugin-delete@2.0.0:
+  rollup-plugin-delete@2.1.0(rollup@4.21.3):
     dependencies:
       del: 5.1.0
+      rollup: 4.21.3
 
   rollup-plugin-dts@6.1.1(rollup@4.21.3)(typescript@5.5.4):
     dependencies:
