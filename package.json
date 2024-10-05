@@ -62,7 +62,7 @@
     "eslint-plugin-jest": "28.8.3",
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "eslint-plugin-tsdoc": "0.3.0",
-    "eslint-plugin-typescript-sort-keys": "3.2.0",
+    "eslint-plugin-typescript-sort-keys": "3.3.0",
     "husky": "9.1.6",
     "intersection-observer": "0.12.2",
     "is-ci": "3.0.1",
