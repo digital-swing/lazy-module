@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.0.5 (2024-10-12)
+
+
+### Features
+
+* accept multiple loader formats : string, promise, promise[] ([5445422](https://github.com/digital-swing/lazy-module/commit/5445422cacff227191f5e4481adcdb3ee58cdd3a))
+
+
+### Bug Fixes
+
+* conditional require optional dependencies ([c21dd15](https://github.com/digital-swing/lazy-module/commit/c21dd15d81610fe9bcbc22f439a61e8d0cb99af5))
+* fix conditional-require import ([4dc7cf5](https://github.com/digital-swing/lazy-module/commit/4dc7cf534b60e824965222c6735c8baffdbf032f))
+* fix module loading ([a492f4a](https://github.com/digital-swing/lazy-module/commit/a492f4ad9d3c90bb29145ba05a5aba60442dec68))
+* polyfill dynamic imports ([56b4a11](https://github.com/digital-swing/lazy-module/commit/56b4a119179fad32cddf2f2801f27ab991ce094a))
+* require optional-require ([e596901](https://github.com/digital-swing/lazy-module/commit/e596901476aa98b33bca6f44eedc020e26cdb0b0))
+
+
+### Miscellaneous Chores
+
+* release 2.0.5 ([ccbf357](https://github.com/digital-swing/lazy-module/commit/ccbf357d23d59bfa3abd8d6469866d5981eb1e22))
+
 ## [2.1.0](https://github.com/digital-swing/lazy-module/compare/v2.0.5...v2.1.0) (2023-12-15)
 
 
