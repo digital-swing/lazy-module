@@ -70,7 +70,7 @@
     "jest-environment-jsdom": "29.7.0",
     "requestidlecallback-polyfill": "1.0.2",
     "rimraf": "6.0.1",
-    "rollup": "4.30.1",
+    "rollup": "4.31.0",
     "rollup-plugin-delete": "2.1.0",
     "rollup-plugin-dts": "6.1.1",
     "rollup-plugin-esbuild": "6.1.1",
