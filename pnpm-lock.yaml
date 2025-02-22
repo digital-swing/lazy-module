@@ -88,8 +88,8 @@ importers:
         specifier: 4.34.8
         version: 4.34.8
       rollup-plugin-delete:
-        specifier: 2.1.0
-        version: 2.1.0(rollup@4.34.8)
+        specifier: 2.2.0
+        version: 2.2.0(rollup@4.34.8)
       rollup-plugin-dts:
         specifier: 6.1.1
         version: 6.1.1(rollup@4.34.8)(typescript@5.7.3)
@@ -910,9 +910,6 @@ packages:
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
-  '@types/glob@7.2.0':
-    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
-
   '@types/graceful-fs@4.1.6':
     resolution: {integrity: sha512-Sig0SNORX9fdW+bQuTEovKj3uHcUL6LQKbCrrqb1X7J6/ReAbhCXRAhc+SMejhLELFj2QcyuxmUooZ4bt5ReSw==}
 
@@ -939,9 +936,6 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
-
-  '@types/minimatch@5.1.2':
-    resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
 
   '@types/node@22.13.5':
     resolution: {integrity: sha512-+lTU0PxZXn0Dr1NBtC7Y8cR21AJr87dLLU953CWA6pMxxv/UDc7jYAY90upcrie1nRcD6XNG5HOYEDtgW5TxAg==}
@@ -1471,9 +1465,9 @@ packages:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
 
-  del@5.1.0:
-    resolution: {integrity: sha512-wH9xOVHnczo9jN2IW68BabcecVPxacIA3g/7z6vhSU/4stOKQzeCRK0yD0A24WiAAUJmmVpWqrERcTxnLo3AnA==}
-    engines: {node: '>=8'}
+  del@6.1.1:
+    resolution: {integrity: sha512-ua8BhapfP0JUJKC/zV9yHHDW/rDoDxP4Zhn3AkA6/xT6gY7jYXJiaeyBZznYVujhZZET+UgcbZiQ7sN3WqcImg==}
+    engines: {node: '>=10'}
 
   delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
@@ -1908,10 +1902,6 @@ packages:
   globalthis@1.0.3:
     resolution: {integrity: sha512-sFdI5LyBiNTHjRd7cGPWapiHWMOXKyuBNX/cWJ3NfzrZQVa8GI/8cofCl74AOVqq9W5kNmguTIzJ/1s2gyI9wA==}
     engines: {node: '>= 0.4'}
-
-  globby@10.0.2:
-    resolution: {integrity: sha512-7dUi7RvCoT/xast/o/dLN53oqND4yk0nsHkhRgn9w65C4PofCLOoJ39iSOg+qVDdWQPIEj+eszMHQ+aLVwwQSg==}
-    engines: {node: '>=8'}
 
   globby@11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
@@ -2622,9 +2612,9 @@ packages:
     resolution: {integrity: sha512-wPrq66Llhl7/4AGC6I+cqxT07LhXvWL08LNXz1fENOw0Ap4sRZZ/gZpTTJ5jpurzzzfS2W/Ge9BY3LgLjCShcw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  p-map@3.0.0:
-    resolution: {integrity: sha512-d3qXVTF/s+W+CdJ5A29wywV2n8CQQYahlgz2bFiA+4eVNJbHJodPZ+/gXwPGh0bOqA+j8S+6+ckmvLGPk1QpxQ==}
-    engines: {node: '>=8'}
+  p-map@4.0.0:
+    resolution: {integrity: sha512-/bjOqmgETBYB5BoEeGVea8dmvHb2m9GLy1E9W43yeyfP6QQCZGFNa+XRceJEuDB6zqr+gKpIAmlLebMpykw/MQ==}
+    engines: {node: '>=10'}
 
   p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
@@ -2798,8 +2788,8 @@ packages:
     engines: {node: 20 || >=22}
     hasBin: true
 
-  rollup-plugin-delete@2.1.0:
-    resolution: {integrity: sha512-TEbqJd7giLvzQDTu4jSPufwhTJs/iYVN2LfR/YIYkqjC/oZ0/h9Q0AeljifIhzBzJYZtHQTWKEbMms5fbh54pw==}
+  rollup-plugin-delete@2.2.0:
+    resolution: {integrity: sha512-REKtDKWvjZlbrWpPvM9X/fadCs3E9I9ge27AK8G0e4bXwSLeABAAwtjiI1u3ihqZxk6mJeB2IVeSbH4DtOcw7A==}
     engines: {node: '>=10'}
     peerDependencies:
       rollup: '*'
@@ -4166,11 +4156,6 @@ snapshots:
 
   '@types/estree@1.0.6': {}
 
-  '@types/glob@7.2.0':
-    dependencies:
-      '@types/minimatch': 5.1.2
-      '@types/node': 22.13.5
-
   '@types/graceful-fs@4.1.6':
     dependencies:
       '@types/node': 22.13.5
@@ -4203,8 +4188,6 @@ snapshots:
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
-
-  '@types/minimatch@5.1.2': {}
 
   '@types/node@22.13.5':
     dependencies:
@@ -4817,14 +4800,14 @@ snapshots:
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
 
-  del@5.1.0:
+  del@6.1.1:
     dependencies:
-      globby: 10.0.2
+      globby: 11.1.0
       graceful-fs: 4.2.10
       is-glob: 4.0.3
       is-path-cwd: 2.2.0
       is-path-inside: 3.0.3
-      p-map: 3.0.0
+      p-map: 4.0.0
       rimraf: 3.0.2
       slash: 3.0.0
 
@@ -5373,17 +5356,6 @@ snapshots:
   globalthis@1.0.3:
     dependencies:
       define-properties: 1.2.1
-
-  globby@10.0.2:
-    dependencies:
-      '@types/glob': 7.2.0
-      array-union: 2.1.0
-      dir-glob: 3.0.1
-      fast-glob: 3.3.2
-      glob: 7.2.3
-      ignore: 5.3.1
-      merge2: 1.4.1
-      slash: 3.0.0
 
   globby@11.1.0:
     dependencies:
@@ -6273,7 +6245,7 @@ snapshots:
     dependencies:
       p-limit: 4.0.0
 
-  p-map@3.0.0:
+  p-map@4.0.0:
     dependencies:
       aggregate-error: 3.1.0
 
@@ -6408,9 +6380,9 @@ snapshots:
       glob: 11.0.0
       package-json-from-dist: 1.0.0
 
-  rollup-plugin-delete@2.1.0(rollup@4.34.8):
+  rollup-plugin-delete@2.2.0(rollup@4.34.8):
     dependencies:
-      del: 5.1.0
+      del: 6.1.1
       rollup: 4.34.8
 
   rollup-plugin-dts@6.1.1(rollup@4.34.8)(typescript@5.7.3):
