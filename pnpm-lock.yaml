@@ -106,11 +106,11 @@ importers:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.13.11)(typescript@5.8.2)
       typedoc:
-        specifier: 0.28.0
-        version: 0.28.0(typescript@5.8.2)
+        specifier: 0.28.1
+        version: 0.28.1(typescript@5.8.2)
       typedoc-plugin-markdown:
         specifier: 4.5.0
-        version: 4.5.0(typedoc@0.28.0(typescript@5.8.2))
+        version: 4.5.0(typedoc@0.28.1(typescript@5.8.2))
       typescript:
         specifier: 5.8.2
         version: 5.8.2
@@ -3127,8 +3127,8 @@ packages:
     peerDependencies:
       typedoc: 0.28.x
 
-  typedoc@0.28.0:
-    resolution: {integrity: sha512-UU+xxZXrpnUhEulBYRwY2afoYFC24J2fTFovOs3llj2foGShCoKVQL6cQCfQ+sBAOdiFn2dETpZ9xhah+CL3RQ==}
+  typedoc@0.28.1:
+    resolution: {integrity: sha512-Mn2VPNMaxoe/hlBiLriG4U55oyAa3Xo+8HbtEwV7F5WEOPXqtxzGuMZhJYHaqFJpajeQ6ZDUC2c990NAtTbdgw==}
     engines: {node: '>= 18', pnpm: '>= 10'}
     hasBin: true
     peerDependencies:
@@ -6760,11 +6760,11 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typedoc-plugin-markdown@4.5.0(typedoc@0.28.0(typescript@5.8.2)):
+  typedoc-plugin-markdown@4.5.0(typedoc@0.28.1(typescript@5.8.2)):
     dependencies:
-      typedoc: 0.28.0(typescript@5.8.2)
+      typedoc: 0.28.1(typescript@5.8.2)
 
-  typedoc@0.28.0(typescript@5.8.2):
+  typedoc@0.28.1(typescript@5.8.2):
     dependencies:
       '@gerrit0/mini-shiki': 3.2.1
       lunr: 2.3.9
