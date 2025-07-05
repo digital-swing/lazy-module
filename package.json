@@ -77,7 +77,7 @@
     "rollup-plugin-typescript2": "0.36.0",
     "ts-jest": "29.4.0",
     "ts-node": "10.9.2",
-    "typedoc": "0.28.6",
+    "typedoc": "0.28.7",
     "typedoc-plugin-markdown": "4.7.0",
     "typescript": "5.8.3"
   },
