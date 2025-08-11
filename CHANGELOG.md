@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2025-08-09)
+
+
+### Bug Fixes
+
+* fix module loading ([a492f4a](https://github.com/digital-swing/lazy-module/commit/a492f4ad9d3c90bb29145ba05a5aba60442dec68))
+
 ## [2.1.0](https://github.com/digital-swing/lazy-module/compare/v2.0.5...v2.1.0) (2023-12-15)
 
 
