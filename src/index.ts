@@ -1,16 +1,34 @@
-export type LazyModuleConfig = {
+type LoaderFn<T = unknown> = () => Promise<T>;
+type LoaderType = LoaderFn<any> | readonly LoaderFn<any>[];
+
+// Utilitaire pour extraire le type de chaque LoaderFn dans un tuple
+type LoaderResults<T extends readonly LoaderFn<any>[]> = {
+  [K in keyof T]: T[K] extends LoaderFn<infer R> ? R : never;
+};
+
+type LoaderResult<T extends LoaderType> =
+  T extends LoaderFn<infer R>
+    ? R
+    : T extends readonly LoaderFn<any>[]
+      ? LoaderResults<T>
+      : never;
+
+export type LazyModuleConfig<
+  T extends LoaderType = LoaderType,
+  E extends Element = Element,
+> = {
   /**
    * Function to execute after the module has been imported.
    *
-   * @param    module - The imported module
+   * @param    module - The imported module (type derived from loader)
    * @param    element - The element that triggered the module import
-   *
    */
-  callback?: (module: any, element: HTMLElement) => void | Promise<void>;
+  callback?: (module: LoaderResult<T>, element: E) => void | Promise<void>;
+
   /**
    * LazyModules dependencies, in case one or many other modules must be loaded first.
    */
-  dependsOn?: LazyModule | LazyModule[];
+  dependsOn?: LazyModule<any> | LazyModule<any>[];
 
   /**
    * Should the module be loaded when the trigger enters the viewport, or deferred to when the browser is idle.
@@ -18,15 +36,11 @@ export type LazyModuleConfig = {
   lazy?: boolean;
 
   /**
-   * Function that loads the module, or the es module resolve path.
+   * Function(s) that load(s) the module.
    *
    * @returns  The module that has been loaded. It can be anything: a class, a constant...
    */
-  loader:
-    | string
-    | string[]
-    | (() => Promise<unknown>)
-    | (() => Promise<unknown>)[];
+  loader: T;
 
   /**
    * Intersection Observer options
@@ -46,61 +60,65 @@ export type LazyModuleConfig = {
   /**
    * Element to watch
    */
-  trigger?: string | NodeListOf<HTMLElement>;
+  trigger?: string | NodeListOf<E>;
 };
 
-export class LazyModule {
-  trigger: NodeListOf<HTMLElement> =
-    document.querySelectorAll<HTMLElement>('root');
-  loader!: Required<LazyModuleConfig>['loader'];
-  callback?: LazyModuleConfig['callback'];
-  lazy: Required<LazyModuleConfig>['lazy'] = true;
-  when: Required<LazyModuleConfig>['when'] = 'interact';
-  on: Required<LazyModuleConfig>['on'] = 'scroll';
-  dependsOn: LazyModule[] = [];
-  observerOptions: Required<LazyModuleConfig>['observerOptions'] = {
+export class LazyModule<
+  const T extends LoaderType = LoaderType,
+  E extends Element = Element,
+> {
+  trigger: NodeListOf<E> = document.querySelectorAll<E>('root');
+  loader!: T;
+  callback?: (module: LoaderResult<T>, element: E) => void | Promise<void>;
+  lazy: boolean = true;
+  when: 'immediate' | 'interact' | 'idle' = 'interact';
+  on: 'scroll' | 'click' | 'hover' = 'scroll';
+  dependsOn: LazyModule<any>[] = [];
+  observerOptions: IntersectionObserverInit = {
     root: document,
     rootMargin: '0px 0px 0px 0px',
     threshold: 0.0,
   };
-  constructor(config: LazyModuleConfig) {
+
+  constructor(config: LazyModuleConfig<T, E>) {
     Object.assign(this, config);
     this.trigger =
       typeof this.trigger === 'string'
-        ? document.querySelectorAll(this.trigger)
+        ? document.querySelectorAll<E>(this.trigger)
         : this.trigger;
     this.dependsOn = Array.isArray(this.dependsOn)
       ? this.dependsOn
-      : [this.dependsOn];
+      : this.dependsOn
+        ? [this.dependsOn]
+        : [];
   }
+
   init = () => {
-    // component found in page
     if (this.trigger) {
       switch (this.on) {
         case 'scroll':
           if ('requestIdleCallback' in window && !this.lazy) {
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             window.requestIdleCallback(this._loadModule);
           } else {
             const observer = new IntersectionObserver(
               this._handleIntersect,
               this.observerOptions
             );
-            this.trigger.forEach((el: HTMLElement) => {
+            this.trigger.forEach((el: E) => {
               observer.observe(el);
             });
           }
           break;
         case 'click':
-          this.trigger.forEach((el: HTMLElement) => {
-            el.addEventListener('click', () => this._handleClick, {
+          this.trigger.forEach((el: E) => {
+            el.addEventListener('click', (e) => this._handleClick(e), {
               once: true,
             });
           });
           break;
         case 'hover':
-          this.trigger.forEach((el: HTMLElement) => {
-            el.addEventListener('mouseenter', () => this._loadModule);
+          this.trigger.forEach((el: E) => {
+            el.addEventListener('mouseenter', () => this._loadModule());
           });
           break;
       }
@@ -108,78 +126,26 @@ export class LazyModule {
   };
 
   _loadModule = async () => {
-    // wait for all dependencies to be loaded
     await Promise.all(
       this.dependsOn.map((module) => module._loadModule())
-    ).then(() => {
-      switch (true) {
-        case typeof this.loader === 'string':
-          import(this.loader as string)
-            .then((module) => {
-              Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
-                this.callback && void this.callback(module, trig);
-              });
-            })
-            .catch((error: Error) => {
-              console.error(error.message);
-            });
-          break;
-
-        case typeof this.loader === 'function':
-          (this.loader as () => Promise<unknown>)()
-            .then((module) => {
-              void Promise.all(
-                Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
-                  this.callback && void this.callback(module, trig);
-                })
-              );
-            })
-            .catch((error: Error) => {
-              console.error(error.message);
-            });
-          break;
-
-        case Array.isArray(this.loader) &&
-          this.loader.every((loader) => typeof loader === 'string'):
-          Promise.all(
-            (this.loader as string[]).map((moduleName) => import(moduleName))
-          )
-            .then((module) => {
-              void Promise.all(
-                Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
-                  this.callback && void this.callback(module, trig);
-                })
-              );
-            })
-            .catch((error: Error) => {
-              console.error(error.message);
-            });
-          break;
-        case Array.isArray(this.loader) &&
-          this.loader.every(
-            (loader) =>
-              typeof loader !== 'string' &&
-              'then' in loader() &&
-              typeof loader().then === 'function'
-          ):
-          // Promise.all(this.loader as (() => Promise<unknown>)[])
-          Promise.all(
-            (this.loader as (() => Promise<unknown>)[]).map((promise) =>
-              promise()
-            )
-          )
-            .then((module) => {
-              void Promise.all(
-                Array.prototype.map.call(this.trigger, (trig: HTMLElement) => {
-                  this.callback && void this.callback(module, trig);
-                })
-              );
-            })
-            .catch((error: Error) => {
-              console.error(error.message);
-            });
-          break;
+    ).then(async () => {
+      let result: LoaderResult<T>;
+      if (typeof this.loader === 'function') {
+        result = (await (this.loader as LoaderFn)()) as LoaderResult<T>;
+      } else if (
+        Array.isArray(this.loader) &&
+        this.loader.every((l) => typeof l === 'function')
+      ) {
+        result = (await Promise.all(
+          (this.loader as LoaderFn[]).map((fn) => fn())
+        )) as LoaderResult<T>;
+      } else {
+        throw new Error('Invalid loader type');
       }
+
+      Array.prototype.forEach.call(this.trigger, (trig: E) => {
+        this.callback && void this.callback(result, trig);
+      });
     });
   };
 
@@ -194,9 +160,9 @@ export class LazyModule {
     });
   };
 
-  _handleClick = async (e: MouseEvent) => {
+  _handleClick = async (e: Event) => {
     await this._loadModule().then(() => {
-      e.target?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      e.target?.dispatchEvent(new Event('click', { bubbles: true }));
     });
   };
 }
