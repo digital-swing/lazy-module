@@ -1,5 +1,6 @@
 {
     "include": [
-        ".eslintrc.cjs","babel.config.cjs"
+        "eslint.config.ts",
+        "babel.config.ts"
     ]
 }

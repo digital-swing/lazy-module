@@ -40,7 +40,7 @@ export default [
       nodeResolve(),
       del({ targets: ['./dist/*'] }),
       typescript({
-        tsconfig: 'tsconfig.json',
+        tsconfig: 'tsconfig.build.json',
         useTsconfigDeclarationDir: true,
       }),
       terser(),

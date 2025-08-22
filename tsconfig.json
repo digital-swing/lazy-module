@@ -1,24 +1,7 @@
 {
-  "include": ["src"],
-  "exclude": ["src/**/__mocks__/**/*.ts", "src/__tests__/**/*.ts"],
-
-  "compilerOptions": {
-    "target": "esnext",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "rootDir": ".",
-    "outDir": "dist",
-    "module": "ESNext",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "strict": true,
-    "sourceMap": false,
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "dist",
-    "lib": ["ES2021", "DOM"]
-  }
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "src",
+    "*.config.ts"
+  ]
 }
