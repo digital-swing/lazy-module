@@ -84,6 +84,6 @@
     "typedoc-plugin-markdown": "4.9.0",
     "typescript": "5.9.2",
     "rollup-plugin-mv": "0.0.2",
-    "typescript-eslint": "8.43.0"
+    "typescript-eslint": "8.44.0"
   }
 }
