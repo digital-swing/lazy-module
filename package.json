@@ -43,7 +43,7 @@
     "docs:vue": "vuepress build docs",
     "lint:js": "eslint resources/scripts",
     "lint:css": "stylelint \"resources/**/*.{css,scss,vue}\"",
-    "prepare": "is-ci || husky install"
+    "postinstall": "is-ci || lefthook install"
   },
   "devDependencies": {
     "@commitlint/cli": "20.1.0",
@@ -66,24 +66,24 @@
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "eslint-plugin-tsdoc": "0.4.0",
     "globals": "16.4.0",
-    "husky": "9.1.7",
     "intersection-observer": "0.12.2",
     "is-ci": "4.1.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
+    "lefthook": "^1.13.6",
     "requestidlecallback-polyfill": "1.0.2",
     "rimraf": "6.0.1",
     "rollup": "4.52.4",
     "rollup-plugin-delete": "2.2.0",
     "rollup-plugin-dts": "6.2.3",
     "rollup-plugin-esbuild": "6.2.1",
+    "rollup-plugin-mv": "0.0.2",
     "rollup-plugin-typescript2": "0.36.0",
     "ts-jest": "29.4.5",
     "ts-node": "10.9.2",
     "typedoc": "0.28.14",
     "typedoc-plugin-markdown": "4.9.0",
     "typescript": "5.9.3",
-    "rollup-plugin-mv": "0.0.2",
     "typescript-eslint": "8.45.0"
   }
 }

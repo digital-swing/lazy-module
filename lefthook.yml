@@ -1,0 +1,39 @@
+# EXAMPLE USAGE
+# Refer for explanation to following link:
+# https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
+#
+pre-push:
+  parallel: true
+  commands:
+    packages-audit:
+      tags: frontend security
+      run: pnpm audit --audit-level high
+    validate-branch-name:
+      run: pnpx validate-branch-name
+
+commit-msg:
+  parallel: true
+  scripts:
+    'commitlint.sh':
+      runner: bash
+
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: '*.{js,ts}'
+      run: pnpx eslint --flag v10_config_lookup_from_file --no-color {staged_files}
+  scripts:
+    'renovate-check.sh':
+      runner: bash
+    'circleci-config-validate.sh':
+      runner: bash
+    'validate-package-json.sh':
+      runner: bash
+    'forbidden-branch.sh':
+      runner: bash
+post-checkout:
+  parallel: true
+  scripts:
+    'build-check.mjs':
+      runner: node
