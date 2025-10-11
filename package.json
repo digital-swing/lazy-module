@@ -80,7 +80,7 @@
     "rollup-plugin-typescript2": "0.36.0",
     "ts-jest": "29.4.5",
     "ts-node": "10.9.2",
-    "typedoc": "0.28.13",
+    "typedoc": "0.28.14",
     "typedoc-plugin-markdown": "4.9.0",
     "typescript": "5.9.3",
     "rollup-plugin-mv": "0.0.2",
