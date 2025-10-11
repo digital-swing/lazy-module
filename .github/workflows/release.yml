@@ -9,11 +9,11 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v4
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
-          bump-minor-pre-major: true
-          release-type: 'node'
-          plugins: 'sentence-case'
-          changelog-types: '[{"type": "feat","section": "Added"},{"type": "fix","section": "Fixed"},{"type": "refactor","section": "Changed"},{"type": "perf","section": "Optimizations"},{"type": "docs","section": "Documentation"},{"type": "style","hidden": true},{"type": "chore","hidden": true},{"type": "test","hidden": true}]'
           token: ${{ secrets.GH_TOKEN }}
+          # optional. customize path to release-please-config.json
+          config-file: release-please-config.json
+          # optional. customize path to .release-please-manifest.json
+          manifest-file: .release-please-manifest.json
