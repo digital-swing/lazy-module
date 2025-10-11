@@ -1,10 +1,11 @@
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
+  workflow_dispatch:
 name: Publish to npm registry
 jobs:
-  release-please:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -18,7 +19,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Create .npmrc file for github registry
         run: |
