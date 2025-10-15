@@ -7,20 +7,22 @@ import tsdoc from 'eslint-plugin-tsdoc';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import prettier from 'eslint-plugin-prettier';
 import { fixupPluginRules } from '@eslint/compat';
-
+import path from "node:path";
 import jest from 'eslint-plugin-jest';
 import js from '@eslint/js';
 
 import { FlatCompat } from '@eslint/eslintrc';
+const __dirname = import.meta.dirname;
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
   allConfig: js.configs.all,
 });
-const tsConfig = require('./tsconfig.json');
-const tsTestConfig = require('./tsconfig.test.json');
 
+
+  import tsConfig from './tsconfig.json' with { type: 'json' };
+  import tsTestConfig from './tsconfig.test.json' with { type: 'json' };
 const config: any = tsLint.config(
   importPlugin.flatConfigs.recommended,
   {
@@ -135,6 +137,7 @@ const config: any = tsLint.config(
     '**/public/**/*.[tj]s',
     '**/build/**/*.[tj]s',
     '**/coverage',
+    '**/.history',
   ]),
   {
     languageOptions: {
