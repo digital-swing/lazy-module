@@ -22,7 +22,7 @@ pre-commit:
   commands:
     eslint:
       glob: '*.{js,ts}'
-      run: pnpx eslint --flag v10_config_lookup_from_file --no-color {staged_files}
+      run: pnpx eslint --flag unstable_native_nodejs_ts_config --flag v10_config_lookup_from_file --no-color {staged_files}
   scripts:
     'renovate-check.sh':
       runner: bash
