@@ -6,16 +6,15 @@ type LoaderResults<T extends readonly LoaderFn<any>[]> = {
   [K in keyof T]: T[K] extends LoaderFn<infer R> ? R : never;
 };
 
-type LoaderResult<T extends LoaderType> =
-  T extends LoaderFn<infer R>
-    ? R
-    : T extends readonly LoaderFn<any>[]
-      ? LoaderResults<T>
-      : never;
+type LoaderResult<T extends LoaderType> = T extends LoaderFn<infer R>
+  ? R
+  : T extends readonly LoaderFn<any>[]
+  ? LoaderResults<T>
+  : never;
 
 export type LazyModuleConfig<
   T extends LoaderType = LoaderType,
-  E extends Element = Element,
+  E extends Element = Element
 > = {
   /**
    * Function to execute after the module has been imported.
@@ -65,7 +64,7 @@ export type LazyModuleConfig<
 
 export class LazyModule<
   const T extends LoaderType = LoaderType,
-  E extends Element = Element,
+  E extends Element = Element
 > {
   trigger: NodeListOf<E> = document.querySelectorAll<E>('root');
   loader!: T;
@@ -89,8 +88,8 @@ export class LazyModule<
     this.dependsOn = Array.isArray(this.dependsOn)
       ? this.dependsOn
       : this.dependsOn
-        ? [this.dependsOn]
-        : [];
+      ? [this.dependsOn]
+      : [];
   }
 
   init = () => {
