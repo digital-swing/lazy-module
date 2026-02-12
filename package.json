@@ -42,8 +42,7 @@
     "docs:dev": "vuepress dev docs",
     "docs:vue": "vuepress build docs",
     "lint:js": "eslint resources/scripts",
-    "lint:css": "stylelint \"resources/**/*.{css,scss,vue}\"",
-    "postinstall": "is-ci || lefthook install"
+    "lint:css": "stylelint \"resources/**/*.{css,scss,vue}\""
   },
   "devDependencies": {
     "@commitlint/cli": "20.1.0",
