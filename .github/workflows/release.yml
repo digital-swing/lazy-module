@@ -4,6 +4,11 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
 name: Update release PR / Create release
 jobs:
   release-please:
@@ -13,7 +18,3 @@ jobs:
         id: release
         with:
           token: ${{ secrets.GH_TOKEN }}
-          # optional. customize path to release-please-config.json
-          config-file: release-please-config.json
-          # optional. customize path to .release-please-manifest.json
-          manifest-file: .release-please-manifest.json
