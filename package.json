@@ -1,6 +1,6 @@
 {
   "name": "@digital-swing/lazy-module",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Asynchroneously load modules when they are required",
   "type": "module",
   "main": "./dist/index.mjs",
