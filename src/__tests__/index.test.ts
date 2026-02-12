@@ -18,32 +18,33 @@ describe('LazyModule', () => {
       '</div>';
 
     vi.clearAllMocks();
-  });
-
-  const rootEl = document.body;
-
-  it('should import module', async () => {
     new LazyModule({
       loader: mockLoader,
       callback: mockCallback,
       trigger: '.test',
       on: 'click',
     }).init();
+  });
 
+  const rootEl = document.body;
+
+  it('should import module', async () => {
     const el = document.querySelector<HTMLElement>('.test')!;
     expect(el).not.toBeNull();
 
-    // Simule un clic sur l’élément déclencheur
+    // Simule un clic sur l'élément déclencheur
     el.click();
 
-    // On attend un peu que la promesse async du loader se résolve
-    await Promise.resolve();
-
-    // ✅ Vérifie que le loader a bien été appelé
-    expect(mockLoader).toHaveBeenCalledTimes(1);
+    // Wait for all async operations to complete
+    await vi.waitFor(
+      () => {
+        expect(mockLoader).toHaveBeenCalledTimes(1);
+        expect(mockCallback).toHaveBeenCalledTimes(1);
+      },
+      { timeout: 1000 }
+    );
 
     // ✅ Vérifie que le callback a été appelé avec le module mocké
-    expect(mockCallback).toHaveBeenCalledTimes(1);
     expect(mockCallback).toHaveBeenCalledWith(
       { default: { name: 'MockedModule' } }, // module importé
       el // élément déclencheur
