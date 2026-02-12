@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/digital-swing/lazy-module/compare/v3.0.0...v4.0.0) (2026-02-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* loaders can only be passed as function (no more strings)
+
+### Changed
+
+* Loaders can only be passed as function (no more strings) ([65b01c4](https://github.com/digital-swing/lazy-module/commit/65b01c4c92be1f58012ad3d73a81d9c1e0d136b0))
+
 ## [4.0.0](https://github.com/digital-swing/lazy-module/compare/v3.0.0...v4.0.0) (2025-10-11)
 
 
